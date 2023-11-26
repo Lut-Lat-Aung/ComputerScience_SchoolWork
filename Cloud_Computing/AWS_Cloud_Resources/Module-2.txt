@@ -1,0 +1,100 @@
+Module 2 AWS_Cloud
+
+Three fundamental drivers of cost with AWS
+are -
+Compute Storage Data Transfer 
+
+-------
+How do you pay for AWS?
+pay for what you use
+pay less when you reserve
+pay less when you use more and as AWS grow
+
+------------
+Pay for what you use
+
+pay only for the services that you consume with no large upfront expenses.
+
+-------
+pay less by using more
+
+savings as usage increases
+
+tiered pricing for Amazon simple storage service (Amazon S3)
+
+Amazon EBS - Elastic Block store
+
+the more you use , the less you pay per GB.
+
+Multiple sotrage 
+
+---------------
+
+pay even less as AWS grows
+
+focuses on lowering cost of doing business
+
+results in AWS passing saving
+
+Custom pricing
+meet varying needs through custome 
+
+AWS free tier
+
+free for 1 year for new customers.
+
+
+Services with no charge
+
+Amazon VPC 
+EBS
+Auto scaling
+
+cloud formation
+
+Identity and Access Management (IAM)
+--------
+
+Total cost of ownership (section 2)
+TCO
+
+On premises versus cloud
+
+
+Why use TCO
+To compare the costs of running an entire infrastructure environment or specific workload on-premises versus on AWS
+
+To budget and build the business case for moving to the cloud
+
+
+-----------
+AWS organizations
+
+policy based account management
+
+group based account management
+
+application programming interfaces (APIs)
+
+Consolidated billing
+
+-----------
+
+Security with AWS organizations
+
+Control access with AWS identity
+
+
+------------
+
+AWS billing and Cost Management
+
+AWS billing dashboard will show you how much you use per month for services you use.
+
+
+Tools 
+AWS budget
+AWS cost and usage report 
+AWS cost explorer
+
+

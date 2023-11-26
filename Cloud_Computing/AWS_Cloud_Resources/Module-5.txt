@@ -1,0 +1,18 @@
+Module 5
+
+Networking and VPN
+
+how to make own web server
+
+There are IP addresses. dotted Decimal form and base two forms
+
+IPV4 (32 bit)
+IPV6 (128 bits)
+
+
+There is CIDR (classless inter domain routing)
+
+this is CIDR - / 24 (it mean how many bits are fixed)
+
+Amazon VPC is used in the server.
+

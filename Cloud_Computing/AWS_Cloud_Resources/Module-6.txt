@@ -1,0 +1,18 @@
+Module-6
+
+AWS compute services
+
+there are many
+
+Amazon EC2
+Aws lambda
+
+Aspects to consider
+what is your application design
+what are your usage patterns
+which configuration settings will you want to manage
+
+
+
+Select an AMI
+

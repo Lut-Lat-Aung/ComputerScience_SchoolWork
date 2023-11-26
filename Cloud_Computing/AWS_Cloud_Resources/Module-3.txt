@@ -1,0 +1,26 @@
+Module 3
+
+AWS region is a geographical area
+
+data governance, legal requirements
+proximity to customers
+services available within the Region
+costs
+
+
+each region has availability zones
+
+there are 69 availability zones world wide
+
+they consits of discrete data centers
+
+designed for fault isolation
+
+
+
+Amazon CloudFront is a content delivery network used to distribute 
+
+AWS infrastructure features
+elasticity and acalability
+fault-tolerance
+high availability
