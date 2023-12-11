@@ -1,0 +1,15 @@
+((A+B) * (C+E))
+
+Prefix
+* + AB + CE
+      AB +  CE + *
+
+( AX * ( BX * ( ( ( CY + AY ) + BY ) * CX ) ) ) ;
+
+
+Prefix
+* AX * BX * + + CY AY BY CX 
+
+Postfix
+
+

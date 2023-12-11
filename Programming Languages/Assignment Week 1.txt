@@ -1,0 +1,52 @@
+Assignment Week 1
+
+
+
+A2.4 – Parse Tree
+Chapter Two Modern Programming Languages, 2nd ed. 22
+Show a parse tree for each of these strings:
+
+
+
+a+b
+
+	<exp>
+    <exp>  +  <exp>
+
+     a     +    b
+
+--------------------------------
+
+a*b+c
+	<exp>
+      ( <exp> )
+    <exp>  *  <exp>
+	     ( <exp> )
+	   <exp> + <exp>
+
+    a   * (  b   +  c  )
+
+----------------------------
+
+
+(a+b)
+		<exp>
+	     ( <exp>  )
+	<exp>    +    <exp>
+	( a      +     b )
+
+---------------------------
+
+
+(a+(b))
+
+		<exp>
+
+	    (  <exp>   )
+	<exp>   +   ( <exp> )
+		    <exp>
+
+	(a     +   (b))
+
+
+

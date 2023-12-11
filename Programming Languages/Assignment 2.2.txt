@@ -1,0 +1,21 @@
+Assignment 2.2
+
+How do we know whether the following sentences are
+syntactically correct or incorrect?
+– The dog loves the cat
+– A rat lives in the house
+– I kicks dog that
+– Love you I do
+– We school go to
+
+----------------------------------
+The dog loves the cat is correct
+A rat lives in the house is correct 
+
+I kicks dog that is not correct
+Love you I do is not correct
+We school  go to is not correct
+
+
+
+

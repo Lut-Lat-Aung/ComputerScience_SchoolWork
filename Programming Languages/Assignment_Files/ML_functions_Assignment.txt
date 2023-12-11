@@ -1,0 +1,71 @@
+(* Function cube of type int -> int that returns the cube of its parameter *)
+fun cube(n: int): int =
+    n * n * n;
+
+(* Function cuber of type real -> real that returns the cube of its parameter *)
+fun cuber(n: real): real =
+    n * n * n;
+
+(* Function third of type 'a list -> 'a that returns the third element of the given list *)
+fun third(lst: 'a list): 'a =
+    hd(tl(tl lst)); (* Assumes the list has at least three elements *)
+
+
+----------------------------------------
+
+
+(* Function max3 of type int * int * int -> int that returns the largest value of three integers *)
+fun max3(a: int, b: int, c: int): int =
+    if a >= b andalso a >= c then a
+    else if b >= a andalso b >= c then b
+    else c;
+------------------------------------
+
+
+(* Function remove2 of type 'a * 'b * 'c -> 'a * 'c that removes the second element from the tuple *)
+fun remove2(tuple: 'a * 'b * 'c): 'a * 'c =
+    let
+        val (first, _, third) = tuple
+    in
+        (first, third)
+    end;
+
+-----------------------------------
+
+(* Function fourthch of type string -> char that returns the fourth character of the given string *)
+fun fourthch(str: string): char =
+    String.sub(str, 3); (* Assumes the string has at least four characters, indices start from 0 *)
+ 	
+
+-------------------------------
+
+
+(* Function rotate of type 'a list * int -> 'a list that rotates the list n times *)
+fun rotate(lst: 'a list, n: int): 'a list =
+    let
+        val len = length lst
+        val rotateBy = n mod len
+    in
+        if rotateBy < 0 then rotate(lst, len + rotateBy)
+        else
+            let
+                val (front, back) = chop rotateBy lst
+            in
+                back @ front
+            end
+    end;
+
+---------------------------------------
+
+(* Function min of type int list -> int that returns the smallest element in the list *)
+fun minhelper(x: int, nil: int list): int = x
+  | minhelper(x, y::ys) = if x <= y then minhelper(x, ys) else minhelper(y, ys);
+
+fun min(lst: int list): int =
+    case lst of
+        [] => raise Empty
+      | x::xs => minhelper(x, xs);
+
+(* Function select of type 'a list * ('a -> bool) -> 'a list that filters elements based on the predicate function *)
+fun select(lst: 'a list, f: 'a -> bool): 'a list =
+    filter f lst;

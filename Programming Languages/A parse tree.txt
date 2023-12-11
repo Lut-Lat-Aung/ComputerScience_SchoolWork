@@ -1,0 +1,28 @@
+A parse tree
+
+An English Grammar
+Chapter Two Modern Programming Languages, 2nd ed. 6
+A sentence is a noun
+phrase, a verb, and a
+noun phrase.
+A noun phrase is an
+article and a noun.
+A verb is…
+An article is…
+A noun is...
+
+<S> ::= <NP> <V> <NP>
+<NP> ::= <A> <N>
+<V> ::= loves | hates|eats
+<A> ::= a | the
+<N> ::= dog | cat | rat
+
+S = sentence
+NP = noun phrase
+V = verb
+A = article
+N = noun
+		    <S>
+	<NP>        <V>       <NP>
+    <A>   <N>       loves    <A> <N>
+     the  dog                the cat

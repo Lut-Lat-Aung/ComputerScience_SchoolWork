@@ -1,0 +1,11 @@
+Assignment 2.3
+
+Design a grammar that captures the following code fragments
+– a + b
+– c * a / b
+– c + b - a
+
+------------------------------------
+
+<expr> := <expr> + <expr> | <expr> - <expr> | <expr> * <expr> | <expr> / <expr> |a|b|c
+
