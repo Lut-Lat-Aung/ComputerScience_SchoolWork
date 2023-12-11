@@ -1,0 +1,50 @@
+import heapq
+
+class Graph:
+    def __init__(self):
+        self.graph = {}
+
+    def add_edge(self, u, v, weight):
+        if u not in self.graph:
+            self.graph[u] = []
+        self.graph[u].append((v, weight))
+
+    def dijkstra(self, start):
+        min_heap = [(0, start)]
+        distances = {node: float('inf') for node in self.graph}
+        distances[start] = 0
+
+        while min_heap:
+            current_distance, node = heapq.heappop(min_heap)
+            
+            if current_distance > distances[node]:
+                continue
+
+            for neighbor, edge_weight in self.graph[node]:
+                distance = current_distance + edge_weight
+                if distance < distances[neighbor]:
+                    distances[neighbor] = distance
+                    heapq.heappush(min_heap, (distance, neighbor))
+
+        return distances
+
+# Example usage of Dijkstra's algorithm
+g = Graph()
+g.add_edge('0', '1', 4)
+g.add_edge('0', '7', 8)
+g.add_edge('1', '7', 11)
+g.add_edge('1', '2', 8)
+g.add_edge('7', '8', 7)
+g.add_edge('7', '6', 1)
+g.add_edge('6', '8', 6)
+g.add_edge('8', '2', 2)
+g.add_edge('2', '3', 7)
+g.add_edge('2', '5', 4)
+g.add_edge('6', '5', 2)
+g.add_edge('5', '3', 14)
+g.add_edge('3', '4', 9)
+g.add_edge('5', '4', 10)
+
+start_node = '0'
+shortest_paths = g.dijkstra(start_node)
+print("Shortest Paths from node", start_node + ":", shortest_paths)

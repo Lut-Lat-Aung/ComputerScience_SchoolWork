@@ -1,0 +1,33 @@
+Certainly, let's break down this code step by step:
+
+1. The code starts by importing the `time` module to measure the execution time of the program.
+
+2. It reads a list of integers `a` from the user. This list represents the array of numbers that will be sorted using the insertion sort algorithm.
+
+3. The variable `n` is assigned the length of the list `a`, representing the number of elements in the array.
+
+4. The `time.process_time()` function is used to record the starting time of the program's execution.
+
+5. The program enters a loop that iterates through the range from `1` to `n-1`. This loop represents the main insertion sort algorithm.
+
+6. Inside the loop, the element at index `i` in the list `a` is assigned to the variable `key`. This element will be compared and moved to its correct position in the sorted part of the array.
+
+7. The variable `j` is assigned the value `i - 1`, representing the index of the last element in the already sorted part of the array.
+
+8. The program enters a `while` loop that runs as long as `j` is greater than or equal to `0` and the value of `key` is less than the element at index `j` in the array.
+
+9. Inside the `while` loop, the element at index `j` is shifted to the right by assigning it to the element at index `j+1`, effectively making space for the insertion of `key`.
+
+10. The value of `j` is decremented by `1`, moving backward through the sorted part of the array.
+
+11. Once the `while` loop exits, the correct position for `key` in the sorted part of the array is found, and it is inserted at index `j+1`.
+
+12. The main loop iterates through all elements of the array, each time placing the current element (`key`) in its correct position within the already sorted part of the array.
+
+13. The ending time of the program's execution is recorded using `time.process_time()`.
+
+14. The sorted array `a` is printed.
+
+15. The program prints the execution time of the insertion sort algorithm.
+
+In summary, this code implements the insertion sort algorithm to sort a given list of integers. The insertion sort works by dividing the array into a sorted and an unsorted part. It iterates through the unsorted part, picking one element at a time, and inserting it into its correct position within the sorted part of the array. The algorithm continues this process until all elements are in the correct sorted order. The time complexity of insertion sort is O(n^2) in the worst case, making it less efficient for large lists compared to more advanced sorting algorithms.

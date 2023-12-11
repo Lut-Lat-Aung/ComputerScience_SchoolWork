@@ -1,0 +1,41 @@
+Part2_Essay2
+
+56,70,30,60,65,22,11,16,40,95,63,3,67
+
+Applying Binary Search Tree method
+
+the result is
+R---- 56
+      L---- 30
+     |     L---- 22
+     |    |     L---- 11
+     |    |    |     L---- 3
+     |    |    |     R---- 16
+     |     R---- 40
+      R---- 70
+           L---- 60
+          |     R---- 65
+          |          L---- 63
+          |          R---- 67
+           R---- 95
+
+2.2 The predecessor of 63 is 65
+
+2.3 There is no successor of 67 
+
+2.4 After delecting 40, 
+
+the result is
+R---- 56
+      L---- 30
+     |     L---- 22
+     |          L---- 11
+     |               L---- 3
+     |               R---- 16
+     |     
+      R---- 70
+           L---- 60
+          |     R---- 65
+          |          L---- 63
+          |          R---- 67
+           R---- 95

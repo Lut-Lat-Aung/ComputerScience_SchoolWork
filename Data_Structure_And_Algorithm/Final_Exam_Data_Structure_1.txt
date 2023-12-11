@@ -1,0 +1,278 @@
+Final_Exam_Data_Structure_1
+
+1) [10 marks] Show the Red-Black Tree resulted from the following sequence operations. At the
+beginning, the Red-Black Tree is empty.
+• Insert 5, 10,15, 20, 25, 30, 35, 40, 45, 50, 55
+• Delete 35
+You can illustrate the resulted Red-Black Tree in any format that is unambiguous. However,
+because the answer must be either a text file or docx file, if you choose to sketch in the paper
+and take a photo of it, you must insert the photo into a docx file for submission.
+
+Ans no.1
+
+Creating a Red-Black Tree involves a series of insertions and deletions, each of which requires adherence to the Red-Black Tree properties. Let's go through the sequence of operations step by step.
+
+1. **Insert 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55:**
+
+    After inserting these values into a Red-Black Tree, the tree might look like this:
+
+    ```
+          20(B)
+        /        \
+    10(R)        40(R)
+     /   \       /   \
+   5(B) 15(B)  35(B) 50(B)
+         /    /  /    /  \
+       25(R)30(R) 45(R) 55(R)
+    ```
+   Note: (R) denotes red nodes, and (B) denotes black nodes.
+
+2. **Delete 35:**
+
+   When deleting a node from a Red-Black Tree, it is first replaced with its successor or predecessor, and then the successor or predecessor is deleted. After deleting 35, the tree might look like this:
+
+    ```
+          20(B)
+        /        \
+    10(R)        45(B)
+     /   \       /   \
+   5(B) 15(B)  40(R) 50(R)
+         /    /       /  \
+       25(R)30(R)     55(R)
+    ```
+
+This configuration adheres to Red-Black Tree properties:
+
+1. Each node is either red or black.
+2. The root is black.
+3. All leaves (NIL or null nodes) are black.
+4. If a node is red, both its children are black.
+5. Every path from a node to its descendant leaves contains the same number of black nodes.
+
+Please note that Red-Black Trees are a type of self-balancing binary search tree, so their exact structure can vary based on the order of insertions and deletions. The provided tree is one of the possible correct configurations based on the given operations.
+
+--------------------------------
+
+2) [10 marks] Given that a graph is defined by (𝑉, 𝐸) where 𝑉 is the vertex set and 𝐸 is the edge set,
+indicate whether each of the following sentence is TRUE or FALSE (2 marks each).
+|𝑉| is the size of vertex set and |𝐸| is the size of edge set.
+a) If |𝐸| < |𝑉|, the graph is disconnected.
+b) Adding an edge to a tree makes the graph no longer be a tree.
+c) A family tree is a directed graph
+d) An electrical wiring of a house in a directed graph.
+e) For an undirected graph, the maximum possible value of |𝐸| is |𝑉|2 − |𝑉
+
+Ans No.2
+
+a) **FALSE**: The graph can still be connected even if |𝐸| < |𝑉|. The connectivity of a graph depends on how the vertices are connected by edges, not solely on the number of edges.
+
+b) **FALSE**: Adding an edge to a tree can create a cycle and transform the tree into a graph that is no longer a tree. However, it does not mean adding an edge always results in a non-tree graph. If the added edge connects two existing vertices without creating a cycle, the graph remains a tree.
+
+c) **TRUE**: A family tree, representing relationships between family members, is typically represented as a directed acyclic graph (DAG) where edges have a direction indicating parent-child relationships.
+
+d) **TRUE**: An electrical wiring of a house can be represented as a directed graph where the nodes represent electrical components (like outlets, switches) and directed edges represent the flow of electricity from one component to another. The directionality of edges matters in this context.
+
+e) **TRUE**: For an undirected graph with |𝑉| vertices, the maximum number of edges |𝐸| occurs in a complete graph where every pair of vertices is connected. In a complete graph, each vertex is connected to |𝑉| - 1 other vertices. Therefore, the maximum possible value of |𝐸| is |𝑉|C₂ = |𝑉| × (|𝑉| - 1) / 2 = |𝑉|²/2 - |𝑉|/2, which is approximately |𝑉|² - |𝑉| for large |𝑉|. So, the statement is TRUE, but the expression for |𝐸| provided in the question is not correct.
+
+---------------------------
+
+3) [10 marks] Given the following edge list, provide the corresponding adjacency list and
+adjacency matrix. The graph is undirected.
+(𝑎, 𝑏), (𝑏, 𝑐), (𝑐, 𝑎), (𝑏, 𝑑), (𝑑, 𝑎), (𝑑, 𝑒), (𝑒, 𝑏)
+
+Ans No.3
+
+The given edge list is: (𝑎, 𝑏), (𝑏, 𝑐), (𝑐, 𝑎), (𝑏, 𝑑), (𝑑, 𝑎), (𝑑, 𝑒), (𝑒, 𝑏)
+
+### Adjacency List:
+An adjacency list represents a graph as an array of linked lists. Each index in the array corresponds to a vertex, and the linked list at that index contains all the adjacent vertices.
+
+- **a**: [b, c, d]
+- **b**: [a, c, d, e]
+- **c**: [a, b]
+- **d**: [b, a, e]
+- **e**: [d, b]
+
+### Adjacency Matrix:
+An adjacency matrix is a 2D array of size |V| × |V| where V is the number of vertices in the graph. A slot matrix[i][j] = 1 indicates that there is an edge from vertex i to vertex j. For an undirected graph, the matrix is symmetric.
+
+```
+   a  b  c  d  e
+a  0  1  1  1  0
+b  1  0  1  1  1
+c  1  1  0  0  0
+d  1  1  0  0  1
+e  0  1  0  1  0
+```
+
+In the adjacency matrix:
+- 1 indicates an edge between the corresponding vertices.
+- 0 indicates no edge between the vertices.
+
+Note: Since the graph is undirected, the matrix is symmetric across the main diagonal. For example, the presence of an edge between vertex a and b is indicated both in row a, column b, and row b, column a.
+
+----------------------------------------
+
+4) [10 marks] The Breadth-First Search is run on the graph below with vertex A being the source
+vertex. List out the vertices according to order that they are reached by the search. If a vertex is
+not reachable by the search, it must not be included in the list. There can be more than one
+correct order. List only one of them for the answer.
+
+Ans No.4
+
+Certainly! Let's consider a simple undirected graph to demonstrate the Breadth-First Search (BFS) traversal. Let's assume the following graph:
+
+```
+   A
+ / | \
+B  C  D
+| / \
+E   F
+```
+
+In this graph, vertex A is the source vertex. The BFS traversal will be as follows:
+
+1. **BFS Order:** A, B, C, D, E, F
+
+Explanation:
+- Start at A.
+- Visit neighbors B, C, D in any order (but not necessarily in alphabetical order).
+- Visit neighbors E, F in any order.
+
+Please note that there can be multiple valid BFS traversal orders for a given graph, as the traversal order of neighbors at the same level can vary. However, the order I provided is one of the valid BFS traversals for the given dummy graph.
+
+----------------------------------
+
+5) [10 marks] The Depth-First Search is run on the graph below. Give the discovery time and the
+finish time of each vertex. There are more than one correct searching orders. Answer only one
+of them.
+
+Ans no.5
+
+Certainly! Let's consider a simple undirected graph to demonstrate the Depth-First Search (DFS) traversal. Let's assume the following graph:
+
+```
+   A
+ / | \
+B  C  D
+| / \
+E   F
+```
+
+In DFS, the discovery time is the order in which vertices are first visited, and the finish time is the order in which they are marked as completely explored. Here's one possible DFS traversal for the given graph:
+
+1. **DFS Order:** A, B, E, F, C, D
+
+   - Discovery Time: (A: 1), (B: 2), (E: 3), (F: 4), (C: 5), (D: 6)
+   - Finish Time: (A: 6), (B: 5), (E: 4), (F: 3), (C: 2), (D: 1)
+
+Explanation:
+- Start at A (Discovery Time: 1).
+- Visit neighbors B, C, D. Choose B first (Discovery Time: 2), then visit its neighbor E (Discovery Time: 3), and then visit F (Discovery Time: 4).
+- Move back to B, which is now finished (Finish Time: 5).
+- Move to C (Discovery Time: 5), then move to D (Discovery Time: 6).
+- Finish exploring the graph starting from A (Finish Time: 6).
+
+Please note that there can be multiple valid DFS traversal orders for a given graph, and the discovery and finish times can vary accordingly. The order I provided is one of the valid DFS traversals for the given dummy graph.
+
+-----------------------------
+
+6) [10 marks] Given a connected undirected graph 𝐺 = (𝑉, 𝐸) where 𝑉 is the vertex set and 𝐸 is
+the edge set. A “k-clustering” is the grouping of vertices into k clusters such that only the
+vertices in the same cluster are connected (by a subset of 𝐸).
+A gap between a pair of clusters is the weight of any edge that does not connect vertices of the
+same cluster.
+A maximally separated k-clustering is the k-clustering whose smallest gap is the largest possible.
+Write a Python 3 program that reads an edge list and 𝑘 as input and prints the smallest gap’
+weight of maximally separated k-clustering as output.
+Hint Utilize the Kruskal’s algorithm. Stop the algorithm when the number of sets is k.
+An example input file and the corresponding output is provided with this exam.
+
+Ans No.6
+
+Certainly! Below is a Python 3 program that reads an edge list and the value of k as input and calculates the smallest gap weight of the maximally separated k-clustering using Kruskal's algorithm.
+
+```python
+class UnionFind:
+    def __init__(self, vertices):
+        self.parent = {v: v for v in vertices}
+        self.rank = {v: 0 for v in vertices}
+
+    def find(self, vertex):
+        if self.parent[vertex] != vertex:
+            self.parent[vertex] = self.find(self.parent[vertex])
+        return self.parent[vertex]
+
+    def union(self, u, v):
+        root_u = self.find(u)
+        root_v = self.find(v)
+        if root_u != root_v:
+            if self.rank[root_u] > self.rank[root_v]:
+                self.parent[root_v] = root_u
+            elif self.rank[root_u] < self.rank[root_v]:
+                self.parent[root_u] = root_v
+            else:
+                self.parent[root_v] = root_u
+                self.rank[root_u] += 1
+
+def kruskal(graph, k):
+    edges = sorted(graph, key=lambda x: x[2])
+    clusters = k
+    uf = UnionFind(set(v for edge in graph for v in edge[:2]))
+
+    for edge in edges:
+        u, v, weight = edge
+        if uf.find(u) != uf.find(v):
+            uf.union(u, v)
+            clusters -= 1
+            if clusters == 1:
+                return weight
+
+# Read input from the file (edges.txt) and k value
+with open('edges.txt', 'r') as file:
+    lines = file.readlines()
+
+graph = []
+for line in lines:
+    u, v, weight = map(int, line.strip().split())
+    graph.append((u, v, weight))
+
+k = int(input("Enter the value of k: "))
+smallest_gap = kruskal(graph, k)
+print("Smallest gap weight of maximally separated k-clustering:", smallest_gap)
+```
+
+In this program, `UnionFind` class is implemented to manage sets of vertices. The `kruskal` function uses Kruskal's algorithm to find the smallest gap weight of the maximally separated k-clustering. The program reads the edge list from the "edges.txt" file and takes the value of k as input. Finally, it calculates and prints the smallest gap weight of the maximally separated k-clustering.
+
+----------------------------
+
+7) [10 marks] Prim’s algorithm and Dijkstra’s algorithm have the same algorithmic structure.
+Although a minimum spanning tree is an undirected graph, Prim’s can be run on a directed
+graph. Similarly, Dijkstra’s single-source shortest path algorithm can be run on an undirected
+graph as well.
+However, if both algorithms are run on the same graph, using the same source vertex, the
+shortest path from the source vertex to another vertex, according to Dijkstra’s algorithm, is not
+necessarily a path on the minimum spanning tree that is generated by Prim’s algorithm.
+The figure below illustrates such a scenario.
+Identify what makes the selected set of edges of the two algorithms different.
+
+Ans No.7
+
+It appears that you have mentioned a figure to illustrate the scenario, but the figure itself is not provided. However, based on the description provided, I can explain the key difference between the selected set of edges in Prim's algorithm (for constructing a minimum spanning tree) and Dijkstra's algorithm (for finding the shortest path from a source vertex).
+
+1. **Prim's Algorithm (Minimum Spanning Tree):**
+   - **Objective:** Prim's algorithm aims to construct a minimum spanning tree (MST) that connects all the vertices in the graph with the minimum possible total edge weight.
+   - **Edge Selection:** In Prim's algorithm, edges are selected based on their minimum weight, and the algorithm ensures that the tree remains connected and acyclic. At each step, the algorithm adds the minimum-weight edge that connects a vertex in the MST to a vertex outside the MST.
+   - **Resulting Set of Edges:** The selected set of edges in Prim's algorithm forms a tree that connects all the vertices in the graph without forming any cycles. The tree is acyclic and spans all the vertices.
+
+2. **Dijkstra's Algorithm (Single-Source Shortest Path):**
+   - **Objective:** Dijkstra's algorithm finds the shortest path from a source vertex to all other vertices in the graph.
+   - **Edge Selection:** In Dijkstra's algorithm, edges are selected based on the minimum total weight from the source vertex to the current vertex. The algorithm prioritizes edges that lead to vertices with the shortest known distance from the source.
+   - **Resulting Set of Edges:** The selected set of edges in Dijkstra's algorithm forms a collection of shortest paths from the source vertex to all other vertices in the graph. These paths are not necessarily part of a tree; they can form a network of shortest paths in the graph.
+
+**Key Difference:**
+- Prim's algorithm focuses on constructing a minimum spanning tree, which is a tree connecting all the vertices with minimum total weight.
+- Dijkstra's algorithm focuses on finding the shortest path from a source vertex to all other vertices, which results in a collection of shortest paths, not necessarily forming a tree.
+
+The difference lies in the objective of the algorithms. Prim's algorithm constructs a tree with the minimum possible total edge weight, while Dijkstra's algorithm finds individual shortest paths from the source to other vertices. As a result, the selected set of edges in these algorithms reflects their specific objectives and criteria for edge selection.
+

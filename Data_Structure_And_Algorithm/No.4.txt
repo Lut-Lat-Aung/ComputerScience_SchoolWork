@@ -1,0 +1,39 @@
+To modify the Counting Sort algorithm to support negative values, we can follow these steps:
+
+1. Find the minimum and maximum values in the input array to determine the range for counting.
+2. Shift the values to make all numbers non-negative.
+3. Apply the Counting Sort algorithm on the modified values.
+4. Reverse the modification and obtain the sorted array with negative values.
+
+Here's the modified version of the Counting Sort algorithm that supports negative values:
+
+```plaintext
+MODIFIED-COUNTING-SORT(A, B)
+    # Step 1: Find the minimum and maximum values
+    min_val = min(A)
+    max_val = max(A)
+    
+    # Step 2: Shift the values to make them non-negative
+    for i in range(len(A)):
+        A[i] = A[i] - min_val
+    
+    # Step 3: Apply Counting Sort
+    k = max_val - min_val
+    C = [0] * (k + 1)
+    for j in range(len(A)):
+        C[A[j]] += 1
+    for i in range(1, k + 1):
+        C[i] += C[i - 1]
+    B = [0] * len(A)
+    for j in range(len(A) - 1, -1, -1):
+        B[C[A[j]] - 1] = A[j]
+        C[A[j]] -= 1
+    
+    # Step 4: Reverse the modification to obtain the sorted array with negative values
+    for i in range(len(B)):
+        B[i] = B[i] + min_val
+    
+    return B
+```
+
+You can use this `MODIFIED-COUNTING-SORT` function to sort an array with negative values. Just pass your input array `A` to the function, and it will return the sorted array `B` that includes negative values as well. Keep in mind that this modified algorithm assumes that the input array only contains integers.

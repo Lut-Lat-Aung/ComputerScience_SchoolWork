@@ -1,0 +1,33 @@
+This code is another implementation of a program that tries to find a pair of numbers in a given list whose product is equal to a given target value K. It uses a nested loop approach to search for the pair and measures the execution time of the program.
+
+Here's a breakdown of how the code works:
+
+1. The code starts by reading an integer K from the user, representing the target value for which the program needs to find a pair of numbers that multiply to K.
+
+2. It reads a list of integers 'a' from the user. This list represents the set of numbers in which the program will search for a pair whose product is equal to K.
+
+3. The `time` module is imported to measure the execution time of the program.
+
+4. The `time.process_time()` function is used to record the starting time of the program's execution.
+
+5. The variable 'found' is initialized to `False`, indicating that a pair of numbers with the desired product has not been found yet.
+
+6. The program enters a loop that iterates through each element 'x' in the list 'a'.
+
+7. For each 'x', it calculates the value 'y' by dividing K by 'x', representing the number that needs to be found to satisfy the condition 'x * y = K'.
+
+8. It checks if 'y' is not equal to 'x'. This check is performed to avoid pairing the same number with itself.
+
+9. If 'y' is not equal to 'x', the program enters another loop that iterates through each element 'z' in the list 'a'.
+
+10. Inside this nested loop, it checks if 'z' is equal to 'y'. If a match is found, it means that a pair of numbers ('x' and 'z') whose product is equal to K has been found. The 'found' variable is set to `True`, and both loops are broken out of using the `break` statement.
+
+11. After the loops, the program checks whether a pair of numbers was found. If not, it prints "no pair exists."
+
+12. If a pair of numbers is found, it prints the values of 'x' and 'y' that form the desired product.
+
+13. The ending time of the program's execution is recorded using `time.process_time()`.
+
+14. Finally, the code prints the execution time of the program.
+
+This implementation uses a nested loop to compare all possible combinations of elements from the list 'a' to find a pair with the desired product. The use of a nested loop makes the algorithm less efficient compared to other techniques, especially for large input lists, as the time complexity can be higher.

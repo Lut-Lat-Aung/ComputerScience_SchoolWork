@@ -1,0 +1,360 @@
+To determine the upper bound on the running time (time complexity) of the given codes, let's analyze each one separately:
+
+1. Code 1:
+```
+for i in range(n-1, -1, -1):
+    j = get_max(i)
+    A[i], A[j] = A[j], A[i]
+```
+
+In this code, we have a loop that iterates from `n-1` down to `0`. In each iteration, the `get_max(i)` function is called, which finds the index of the maximum value in the sublist `A[0..i]`. Then, it swaps the elements at positions `i` and `j`.
+
+The `get_max(i)` function needs to find the maximum element in the sublist `A[0..i]`, which takes linear time `O(i)` since it needs to check all elements from index `0` to `i`. The swapping operation `A[i], A[j] = A[j], A[i]` is constant time `O(1)`.
+
+The loop runs `n` times, and in each iteration, we have a linear operation and a constant operation. Therefore, the time complexity `T(n)` can be approximated as follows:
+
+```
+T(n) ≈ O(1) + O(2) + O(3) + ... + O(n) 
+     ≈ O(n^2)  
+```
+
+So, the upper bound on the running time of Code 1 is `O(n^2)`.
+
+2. Code 2:
+```
+h = heap(A, morethan) # build max heap
+for i in range(n-1, -1, -1):
+    A[i] = h.extract_max()
+```
+
+In this code, we first build a max heap from the list `A`, which takes linear time `O(n)` using standard heap construction algorithms. Then, we have another loop that iterates from `n-1` down to `0`, and in each iteration, it extracts the maximum element from the max heap and assigns it to `A[i]`.
+
+The `extract_max()` operation from a max heap takes `O(log n)` time since it involves re-balancing the heap after removing the maximum element.
+
+The loop runs `n` times, and in each iteration, we have a `O(log n)` operation. Therefore, the time complexity `T(n)` for Code 2 can be approximated as follows:
+
+```
+T(n) ≈ O(n) * O(log n)
+     ≈ O(n log n)
+```
+
+So, the upper bound on the running time of Code 2 is `O(n log n)`.
+
+In summary, the time complexity for the two codes is as follows:
+
+- Code 1: `T(n) = O(n^2)`
+- Code 2: `T(n) = O(n log n)`
+
+---------------------------------------
+If the running time of the two codes above are different, which one is faster? And what is the
+reason that it is faster?
+
+If the running times of the two codes are different, and Code 2 has a time complexity of `O(n log n)` while Code 1 has a time complexity of `O(n^2)`, then Code 2 is faster.
+
+The reason Code 2 is faster is because its time complexity grows at a slower rate compared to Code 1. As the size of the input list `n` increases, the number of operations required by Code 2 increases in a more favorable manner than the number of operations required by Code 1.
+
+In terms of specific growth rates:
+
+- Code 1 has a quadratic growth rate of `O(n^2)`, which means that as `n` increases, the number of operations grows quadratically. For example, if `n` doubles, the number of operations would quadruple.
+
+- Code 2 has a linearithmic growth rate of `O(n log n)`, which grows slower than quadratic. As `n` increases, the number of operations increases, but not as dramatically as in the case of quadratic growth. For example, if `n` doubles, the number of operations would roughly double times the logarithm of `n`.
+
+The difference in growth rates becomes significant for larger input sizes. As `n` becomes sufficiently large, the advantage of Code 2 becomes more pronounced, and it will outperform Code 1 in terms of running time.
+
+In summary, Code 2 is faster due to its more efficient time complexity of `O(n log n)` compared to Code 1's `O(n^2)`. For larger input sizes, Code 2 will perform considerably better and be more time-efficient.
+
+
+----------------------------------
+
+No. 2 Visa application reservation.
+
+• Reservation is required for the time to submit Visa application document and interview.
+• When the application is submitted, the reservation is removed from set of pending events
+• “Reserve request” specifies the requested time, t, to get service from the Visa office.
+• t will be added to the list of reservations if no other previous reservations are scheduled
+within k minutes both before and after t.
+Example
+17 21 26 29 36
+time (mins)
+now x x x x
+If k = 3,
+• 24 is not OK (must be at least 3 minutes away from 26)
+• 33 is OK
+• 10 is invalid (already past)
+Given that the accepted reservation list is R = [R[0], R[1], R[2], … , R[n-1]], where R[i] is the
+requested time of reservation i.
+You are to write a Python program that takes R and a new request time, t, as input. Then, the
+program either add this new reservation to the list or reject, depending on whether the criteria
+for reservation is met.
+a) [5 marks] Apply the insertion sort technique to keep the list R sorted all the time. Insert a
+new reservation into R only if it is at least k minutes away from both the reservations before
+and after t.
+b) [5 marks] If the length of R is n, what is the upperbound on the running time of the
+algorithm for proessing a new request in question a) above?
+c) [5 marks] As an alternative, if you store the reservation list R in a binary search tree, suggest
+the process of how t is to be determined whether it can be added into the list.
+d) [5 marks] Following the question c) above in which a binary search tree is utilized, what is
+the upperbound on the running time for processing a new request?
+
+No.2 solution 
+
+a) Python program using insertion sort technique to add new reservation to the list:
+
+```python
+def is_valid_reservation(R, t, k):
+    # Check if the new reservation time t is at least k minutes away from both previous and next reservations
+    for i in range(len(R)):
+        if abs(t - R[i]) <= k:
+            return False
+    return True
+
+def insert_reservation(R, t, k):
+    if is_valid_reservation(R, t, k):
+        R.append(t)
+        # Perform insertion sort to keep the list R sorted all the time
+        for i in range(1, len(R)):
+            key = R[i]
+            j = i - 1
+            while j >= 0 and key < R[j]:
+                R[j + 1] = R[j]
+                j -= 1
+            R[j + 1] = key
+        return True
+    else:
+        return False
+
+# Test example
+R = [17, 21, 26, 29, 36]
+new_reservation_time = 33
+k = 3
+if insert_reservation(R, new_reservation_time, k):
+    print("Reservation successful. Updated reservation list:", R)
+else:
+    print("Reservation rejected. The new reservation time does not meet the criteria.")
+```
+
+b) The upper bound on the running time of the algorithm for processing a new request using insertion sort is O(n^2). This is because, in the worst case scenario, the algorithm might have to compare the new reservation time with all existing reservations in the list (O(n) comparisons), and for each comparison, it might need to shift elements to make space for the new reservation in the sorted list (O(n) shifts). As a result, the overall complexity becomes O(n^2).
+
+c) If the reservation list R is stored in a binary search tree (BST), determining whether t can be added into the list can be done efficiently using the properties of the BST.
+
+To determine if t can be added to the BST:
+1. Start from the root of the BST.
+2. If the root is None, it means the tree is empty, so t can be added.
+3. Compare t with the value of the current node:
+   a) If t is equal to the value of the current node, t cannot be added because it violates the rule of having unique values in the BST (assuming duplicate reservations are not allowed).
+   b) If t is less than the value of the current node, move to the left child and repeat step 3.
+   c) If t is greater than the value of the current node, move to the right child and repeat step 3.
+4. Continue traversing down the tree until reaching a None node, indicating that t can be added at this position.
+
+d) The upper bound on the running time for processing a new request using the binary search tree approach is O(log n). This is because, in the worst case, the algorithm has to traverse from the root to the appropriate leaf node, which takes O(log n) time in a balanced binary search tree. Since we are not rebalancing the tree after each insertion, the tree might become imbalanced over time, but the average complexity of inserting a new node in a BST is still O(log n) for a well-behaved BST.
+
+--------------------------------------------
+
+3) [10 marks] A quicksort code, in Python, is given as
+def quicksort(p, r):
+global A
+if p < r:
+q = partition(p,r)
+print(A[p:q], A[q], A[q+1:r+1])
+quicksort(p,q-1)
+quicksort(q+1,r)
+Let A = [52, 37, 63, 14, 17, 8, 6, 25]. What are the output of quicksort(0, n-1)?
+You can assume any valid partitioning algorithm.
+
+Solution
+
+To find the output of `quicksort(0, n-1)` for the given list `A = [52, 37, 63, 14, 17, 8, 6, 25]`, we need to trace the execution of the quicksort algorithm. The partitioning algorithm is not given explicitly, but we can assume any valid partitioning scheme. Let's use the Lomuto partition scheme for simplicity.
+
+The Lomuto partition scheme selects the last element as the pivot and rearranges the elements such that all elements less than the pivot are to its left, and all elements greater than or equal to the pivot are to its right.
+
+Here's the step-by-step execution of the quicksort algorithm:
+
+Initial call: quicksort(0, 7)
+
+1. Partition the array `[52, 37, 63, 14, 17, 8, 6, 25]` using Lomuto partitioning with pivot `A[7] = 25`.
+   After partitioning: `[17, 14, 8, 6, 25, 52, 37, 63]`
+   The pivot `25` is now in its sorted position.
+
+2. Call quicksort recursively on the left subarray: quicksort(0, 4)
+
+   a. Partition the left subarray `[17, 14, 8, 6]` using Lomuto partitioning with pivot `A[4] = 17`.
+      After partitioning: `[14, 8, 6, 17]`
+      The pivot `17` is now in its sorted position.
+
+3. Call quicksort recursively on the left subarray: quicksort(0, 2)
+
+   a. Partition the left subarray `[14, 8]` using Lomuto partitioning with pivot `A[2] = 14`.
+      After partitioning: `[8, 14]`
+      The pivot `14` is now in its sorted position.
+
+4. Call quicksort recursively on the left subarray: quicksort(0, 1)
+
+   a. Partition the left subarray `[8]` (only one element, so no partitioning is needed).
+      The array `[8]` is already sorted.
+
+5. Call quicksort recursively on the right subarray: quicksort(2, 2)
+
+   b. Partition the right subarray `[14]` (only one element, so no partitioning is needed).
+      The array `[14]` is already sorted.
+
+6. After step 5, the recursive call quicksort(0, 1) is completed. The left subarray is `[8]`, and the right subarray is `[14]`.
+
+7. Merge the subarrays `[8]` and `[14]` into `[8, 14]`.
+
+8. After step 4, the recursive call quicksort(0, 2) is completed. The left subarray is `[8, 14]`, and the right subarray is `[17]`.
+
+9. Merge the subarrays `[8, 14]` and `[17]` into `[8, 14, 17]`.
+
+10. After step 3, the recursive call quicksort(0, 4) is completed. The left subarray is `[8, 14, 17]`, and the right subarray is `[6]`.
+
+11. Merge the subarrays `[8, 14, 17]` and `[6]` into `[6, 8, 14, 17]`.
+
+12. After step 2, the recursive call quicksort(0, 7) is completed. The left subarray is `[6, 8, 14, 17]`, and the right subarray is `[25, 52, 37, 63]`.
+
+13. Merge the subarrays `[6, 8, 14, 17]` and `[25, 52, 37, 63]` into the final sorted array:
+    `[6, 8, 14, 17, 25, 37, 52, 63]`
+
+The output of `quicksort(0, 7)` is the sorted array: `[6, 8, 14, 17, 25, 37, 52, 63]`.
+
+---------------------------------
+
+4)  A mergesort code, in Python, is given as
+def mergesort(A, p, r):
+if p < r:
+q = (p+r)//2
+mergesort(A, p,q)
+mergesort(A, q+1,r)
+merge(A, p, q, r)
+print(A[p:r+1])
+Let A = [52, 37, 63, 14, 17, 8, 6, 25]. What are the output of mergesort(A, 0, n-1)?
+
+Solution
+
+To find the output of `mergesort(A, 0, n-1)` for the given list `A = [52, 37, 63, 14, 17, 8, 6, 25]`, we need to trace the execution of the mergesort algorithm. Mergesort is a divide-and-conquer sorting algorithm that recursively divides the input list into two halves, sorts each half separately, and then merges them back together in sorted order.
+
+Here's the step-by-step execution of the mergesort algorithm:
+
+Initial call: mergesort(A, 0, 7)
+
+1. Split the array `[52, 37, 63, 14, 17, 8, 6, 25]` into two halves:
+   Left half: `[52, 37, 63, 14]`
+   Right half: `[17, 8, 6, 25]`
+
+2. Recursively call mergesort on the left half: mergesort(A, 0, 3)
+
+   a. Split the left half `[52, 37, 63, 14]` into two halves:
+      Left half: `[52, 37]`
+      Right half: `[63, 14]`
+
+   b. Recursively call mergesort on the left half: mergesort(A, 0, 1)
+
+      i. Split the left half `[52, 37]` into two halves:
+         Left half: `[52]`
+         Right half: `[37]`
+
+      ii. Since both halves have only one element, no further splitting is needed.
+
+      iii. Merge the subarrays `[52]` and `[37]` into `[37, 52]`.
+
+   c. Recursively call mergesort on the right half: mergesort(A, 2, 3)
+
+      i. Split the right half `[63, 14]` into two halves:
+         Left half: `[63]`
+         Right half: `[14]`
+
+      ii. Since both halves have only one element, no further splitting is needed.
+
+      iii. Merge the subarrays `[63]` and `[14]` into `[14, 63]`.
+
+   d. Merge the subarrays `[37, 52]` and `[14, 63]` into `[37, 52, 14, 63]`.
+
+3. Recursively call mergesort on the right half: mergesort(A, 4, 7)
+
+   a. Split the right half `[17, 8, 6, 25]` into two halves:
+      Left half: `[17, 8]`
+      Right half: `[6, 25]`
+
+   b. Recursively call mergesort on the left half: mergesort(A, 4, 5)
+
+      i. Since both halves have only one element, no further splitting is needed.
+
+      ii. Merge the subarrays `[17]` and `[8]` into `[8, 17]`.
+
+   c. Recursively call mergesort on the right half: mergesort(A, 6, 7)
+
+      i. Since both halves have only one element, no further splitting is needed.
+
+      ii. Merge the subarrays `[6]` and `[25]` into `[6, 25]`.
+
+   d. Merge the subarrays `[8, 17]` and `[6, 25]` into `[6, 8, 17, 25]`.
+
+4. Merge the final sorted subarrays `[37, 52, 14, 63]` and `[6, 8, 17, 25]` into the fully sorted array:
+   `[6, 8, 14, 17, 25, 37, 52, 63]`
+
+The output of `mergesort(A, 0, 7)` is the sorted array: `[6, 8, 14, 17, 25, 37, 52, 63]`.
+
+---------------------------------------
+
+5) [10 marks] Given a list of n distinct integers, write a Python program to find if there are two
+pairs (a, b) and (c, d) such that a*b = c*d, where a,b,c,d are all distinct integers. If there are
+multiple pairs that meet the criterion, print any of them.
+INPUT: A sequence of distinct integers, separated by space.
+OUTPUT: If the pairs exist, print the first two numbers (of the first pair), followed by a comma,
+followed by the second two numbers (of the second pair).
+If no pair exists, print “No pair exists”.
+Example
+INPUT OUTPUT
+7 4 3 1 8 9 6 3 8 , 4 6
+30 65 1 90 8 9 7 No pair exists
+The program must be able to handle a list of 2000 integers within 1 second.
+Hint: Use the provided code template.
+Requiring a technique for fast searching is inevitable.
+
+Solution
+
+To find if there are two pairs (a, b) and (c, d) such that a*b = c*d in a list of distinct integers, we can use a Python program that utilizes a dictionary (hash table) to store the products of all possible pairs of elements. This allows us to efficiently search for matching pairs.
+
+Here's the Python program to achieve this:
+
+```python
+def find_matching_pairs(nums):
+    # Create a dictionary to store the product of all possible pairs
+    product_dict = {}
+
+    n = len(nums)
+    for i in range(n):
+        for j in range(i + 1, n):
+            product = nums[i] * nums[j]
+            if product in product_dict:
+                a, b = product_dict[product]
+                c, d = nums[i], nums[j]
+                # Ensure that all numbers in the pair are distinct
+                if a != c and a != d and b != c and b != d:
+                    return a, b, c, d
+            else:
+                product_dict[product] = (nums[i], nums[j])
+
+    return None
+
+# Read the input list of distinct integers
+input_list = list(map(int, input().split()))
+
+# Find the matching pairs
+matching_pairs = find_matching_pairs(input_list)
+
+# Print the result
+if matching_pairs:
+    a, b, c, d = matching_pairs
+    print(f"{a}, {b} , {c}, {d}")
+else:
+    print("No pair exists")
+```
+
+To test the program with a list of 2000 integers within 1 second, you can use the following approach:
+
+1. Generate a list of 2000 distinct integers (e.g., using the `random.sample` function).
+2. Call the `find_matching_pairs` function with the generated list as input and measure the execution time using Python's `time` module.
+
+Note: The provided code uses a nested loop to find the pairs, which has a time complexity of O(n^2). This might work fine for small inputs, but it may not be efficient for very large lists. For faster searching in large lists, you can consider using more advanced data structures like a balanced binary search tree (e.g., `sortedcontainers.SortedDict`) or a set (e.g., `set`) instead of a dictionary to store the products of pairs. These data structures provide faster lookup times and can handle larger lists within 1 second. However, implementing and testing those data structures go beyond the scope of the provided code template.
+
+----------------------------------

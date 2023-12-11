@@ -1,0 +1,263 @@
+What is Heap?
+
+A heap is a tree-like data structure that forms a complete tree and satisfies the heap invariant. The heap invariant states that, if A is a parent node of B, then A is ordered with respect to B for all nodes A and B in a heap. This means a parent node’s value is always greater than or equal to the value of the child nodes for all nodes in a heap. Or the value of the parent node is less than or equal to the value of the child node for all nodes in a heap.
+
+Additionally, there are two types of heap data structures, termed Max Heap and Min heap. The Max heap is a tree-like structure in which the parent node’s value is greater than the value of the child node. The diagram given below represents a binary max heap having the highest value at its root node. 
+
+Max_heap.
+
+The Min heap is a tree-like structure in which the parent node’s value is smaller than the value of the child node. The tree diagram given below shows a binary heap tree having the smallest value at its root node.
+
+Min_Heap.
+Types of Priority Queue
+
+There are two types of priority queues based on the priority of elements. 
+
+    If the element with the smallest value has the highest priority, then that priority queue is called the min priority queue. 
+    If the element with a higher value has the highest priority, then that priority queue is known as the max priority queue. 
+    Furthermore, you can implement the min priority queue using a min heap, whereas you can implement the max priority queue using a max heap.
+
+Priority Queue Operations
+
+The operations that you can perform on a priority queue in data structure are insertion, deletion, and peek. Let’s analyze how you can achieve these operations on max heap representation of priority queue.
+
+    Inserting the Element in a Priority Queue: Once you perform the new insertion, the new element will move to the empty space from top to bottom and left to right. Additionally, if the element is not in the correct position, it will compare it with the parent node. Following that, if the element is not in proper order, then it swaps the elements. The swapping process continues until all the elements inside the queue are in the correct positions.
+
+Insertion_Max_heap_Implementation.
+
+In the example above, it inserted the new element 43 into the max heap representation of the priority queue. But because of this insertion, the order gets disturbed. To make sure that all the elements arrive in proper order, a swapping operation takes place. This operation is also known as Heapify in the Heap data structure.
+
+    Deletion in Priority Queue: As you know that in a max heap, the maximum element is the root node. And it will remove the element which has maximum priority first. Thus, you remove the root node from the queue. This removal creates an empty slot, which will be further filled with new insertion. Then, it compares the newly inserted element with all the elements inside the queue to maintain the heap invariant.
+
+Deletion_Max_Heap_Implementation
+
+In the example above, it will delete the element at the root node, and the heapify operation is performed to restore the priority-based order.
+Basics to Advanced - Learn It All!
+Caltech PGP Full Stack DevelopmentExplore Program
+Basics to Advanced - Learn It All!
+Coding Implementation of Priority Queue
+
+Here, you will implement a priority queue in data structure using a max heap. The language that you are going to use for implementation is the C programming language.
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+struct heap {
+
+int size;
+
+int count;
+
+int *heaparr;
+
+};
+
+int *heap, size, count;
+
+int initial_size = 4;
+
+void heap_init(struct heap *h)
+
+{
+
+h->count = 0;
+
+h->size = initial_size;
+
+h->heaparr = (int *) malloc(sizeof(int) * 4);
+
+if(!h->heaparr) {
+
+printf("Error allocating memory...\n");
+
+exit(-1);
+
+}
+
+}
+
+void max_heapify(int *data, int loc, int count) {
+
+int left, right, largest, temp;
+
+left = 2*(loc) + 1;
+
+right = left + 1;
+
+largest = loc;
+
+if (left <= count && data[left] > data[largest]) {
+
+largest = left;
+
+}
+
+if (right <= count && data[right] > data[largest]) {
+
+largest = right;
+
+}
+
+if(largest != loc) {
+
+temp = data[loc];
+
+data[loc] = data[largest];
+
+data[largest] = temp;
+
+max_heapify(data, largest, count);
+
+}
+
+}
+
+void heap_push(struct heap *h, int value)
+
+{
+
+int index, parent;
+
+// Resize the heap if it is too small to hold all the data
+
+if (h->count == h->size)
+
+{
+
+h->size += 1;
+
+h->heaparr = realloc(h->heaparr, sizeof(int) * h->size);
+
+if (!h->heaparr) exit(-1); // Exit if the memory allocation fails
+
+}
+
+index = h->count++; // First insert at last of array
+
+// Find out where to put the element and put it
+
+for(;index; index = parent)
+
+{
+
+parent = (index - 1) / 2;
+
+if (h->heaparr[parent] >= value) break;
+
+h->heaparr[index] = h->heaparr[parent];
+
+}
+
+h->heaparr[index] = value;
+
+}
+
+void heap_display(struct heap *h) {
+
+int i;
+
+for(i=0; i<h->count; ++i) {
+
+printf("|%d|", h->heaparr[i]);
+
+}
+
+printf("\n");
+
+}
+
+int heap_delete(struct heap *h)
+
+{
+
+int removed;
+
+int temp = h->heaparr[--h->count];
+
+if ((h->count <= (h->size + 2)) && (h->size > initial_size))
+
+{
+
+h->size -= 1;
+
+h->heaparr = realloc(h->heaparr, sizeof(int) * h->size);
+
+if (!h->heaparr) exit(-1); // Exit if the memory allocation fails
+
+}
+
+removed = h->heaparr[0];
+
+h->heaparr[0] = temp;
+
+max_heapify(h->heaparr, 0, h->count);
+
+return removed;
+
+}
+
+int emptyPQ(struct heap *pq) {
+
+int i;
+
+while(pq->count != 0) {
+
+printf("<<%d", heap_delete(pq));
+
+}
+
+}
+
+int main() {
+
+struct heap h;
+
+heap_init(&h);
+
+heap_push(&h,1);
+
+heap_push(&h,5);
+
+heap_push(&h,3);
+
+heap_push(&h,7);
+
+heap_push(&h,9);
+
+heap_push(&h,8);
+
+heap_display(&h);
+
+heap_display(&h);
+
+     printf("\nThe deletion of elements from priority queue depending on priority: \n");
+
+emptyPQ(&h);
+
+return 0;
+
+}
+
+Output: You have implemented a priority queue in data structure. It will remove the elements of a priority queue as per their priority. You can verify that with the help of the result shown below:
+
+Program_Result.
+Applications of Priority Queue in Data Structure
+
+The following are the applications of the priority queue in data structures:
+
+    IP Routing to Find Open Shortest Path First: OSPF is a link-state routing protocol that is used to find the best path between the source and the destination router. This protocol works on the principle of Dijkstra’s shortest path algorithm by using a priority queue to track an optimal route.
+    Data Compression in WINZIP / GZIP: The Huffman encoding algorithm uses a priority queue to maintain the codes for data contents. They store these codes in a min heap, considering the size of codes as a parameter to decide the priority.
+    Used in implementing Prim’s algorithm: Prim’s algorithm generates a minimum spanning tree from an undirected, connected, and weighted graph. It uses a min priority queue to maintain the order of elements for generating a minimum spanning tree.
+    Used to perform the heap sort: When you provide an unsorted array to this algorithm, it converts it into a sorted array. This algorithm uses a min priority queue to generate an order of elements.
+    Load balancing and Interrupt handling: Load balancing fields the requests from the users and distributes them to different available servers. Whereas, interrupt handling is a mechanism for handling interrupts in OS. The priority queue is used to manage requests, and it interrupts both functionalities simultaneously. 
+
+Conclusion
+
+In this tutorial, you explored the priority queue in data structure. You went through different implementation strategies that can implement a priority queue. Out of which, the heap implementation is the optimal approach. Following this, you understood the priority queue operations with the help of a pictorial representation. You also encountered coding implementation of the priority queue in data structure.
+
+If you are looking for more comprehensive learning that goes beyond data structures and covers the most in-demand programming languages and skills needed today to build interactive applications, Simplilearn’s Software Development Courses will prove to be just right for you. 
+
+The courses mentioned in the catalog above will help you master the art of Software Development and become job-ready. Explore now and get started!
+
+On that note, do you have any questions related to this tutorial on a priority queue in data structure? If you do, please place them as comments towards the end of this page; we will respond to them soon!

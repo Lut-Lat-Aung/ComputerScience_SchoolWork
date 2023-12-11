@@ -1,0 +1,1226 @@
+Final_Exam_Test_Case_1
+
+Certainly! Here are some common data structure and algorithm questions along with their solutions:
+
+### Question 1: Find the Second Largest Element in an Array
+**Question:** Given an unsorted array of integers, find the second largest element.
+
+**Solution:**
+```python
+def second_largest(arr):
+    first_max = float('-inf')
+    second_max = float('-inf')
+    
+    for num in arr:
+        if num > first_max:
+            second_max = first_max
+            first_max = num
+        elif num > second_max and num < first_max:
+            second_max = num
+    
+    return second_max
+
+# Example usage
+arr = [3, 1, 7, 5, 9, 2]
+result = second_largest(arr)
+print("Second Largest Element:", result)
+```
+
+### Question 2: Reverse a Linked List
+**Question:** Given a singly linked list, reverse it.
+
+**Solution:**
+```python
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def reverse_linked_list(head):
+    prev = None
+    current = head
+    
+    while current:
+        next_node = current.next
+        current.next = prev
+        prev = current
+        current = next_node
+    
+    return prev
+
+# Example usage
+# Create a linked list: 1 -> 2 -> 3 -> 4 -> 5
+head = ListNode(1)
+head.next = ListNode(2)
+head.next.next = ListNode(3)
+head.next.next.next = ListNode(4)
+head.next.next.next.next = ListNode(5)
+
+# Reverse the linked list
+new_head = reverse_linked_list(head)
+
+# Print reversed linked list: 5 -> 4 -> 3 -> 2 -> 1
+while new_head:
+    print(new_head.val, end=" -> ")
+    new_head = new_head.next
+```
+
+### Question 3: Implement Depth-First Search (DFS) for a Graph
+**Question:** Given an undirected graph, implement Depth-First Search (DFS) to traverse the graph.
+
+**Solution:**
+```python
+from collections import defaultdict
+
+class Graph:
+    def __init__(self):
+        self.graph = defaultdict(list)
+
+    def add_edge(self, u, v):
+        self.graph[u].append(v)
+        self.graph[v].append(u)
+
+    def dfs_util(self, vertex, visited):
+        print(vertex, end=" ")
+        visited[vertex] = True
+        for neighbor in self.graph[vertex]:
+            if not visited[neighbor]:
+                self.dfs_util(neighbor, visited)
+
+    def dfs(self, start_vertex):
+        visited = [False] * len(self.graph)
+        self.dfs_util(start_vertex, visited)
+
+# Example usage
+graph = Graph()
+graph.add_edge(1, 2)
+graph.add_edge(1, 3)
+graph.add_edge(2, 4)
+graph.add_edge(2, 5)
+
+print("DFS Traversal:")
+graph.dfs(1)
+```
+
+These are just a few examples of common data structure and algorithm questions along with their solutions. Understanding these concepts and practicing different problem-solving techniques will help you prepare for similar questions in interviews and exams.
+
+
+Certainly! Here are a few more common data structure and algorithm questions along with their solutions:
+
+### Question 1: Find the Missing Number in an Array
+**Question:** Given an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the one that is missing from the array.
+
+**Solution:**
+```python
+def find_missing_number(nums):
+    n = len(nums)
+    total_sum = (n * (n + 1)) // 2
+    actual_sum = sum(nums)
+    return total_sum - actual_sum
+
+# Example usage
+nums = [3, 0, 1, 4, 5]
+missing_number = find_missing_number(nums)
+print("Missing Number:", missing_number)
+```
+
+### Question 2: Check if a String is a Palindrome
+**Question:** Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+
+**Solution:**
+```python
+def is_palindrome(s):
+    s = ''.join(e.lower() for e in s if e.isalnum())
+    return s == s[::-1]
+
+# Example usage
+string = "A man, a plan, a canal: Panama"
+result = is_palindrome(string)
+print("Is Palindrome:", result)
+```
+
+### Question 3: Find the Majority Element in an Array
+**Question:** Given an array of integers, find the majority element, which appears more than `n/2` times where `n` is the size of the array.
+
+**Solution:**
+```python
+def majority_element(nums):
+    count = 0
+    candidate = None
+    
+    for num in nums:
+        if count == 0:
+            candidate = num
+        count += 1 if num == candidate else -1
+    
+    return candidate
+
+# Example usage
+nums = [3, 3, 4, 2, 2, 2, 3]
+majority = majority_element(nums)
+print("Majority Element:", majority)
+```
+
+### Question 4: Merge Two Sorted Lists
+**Question:** Merge two sorted linked lists and return it as a new sorted list.
+
+**Solution:**
+```python
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def merge_sorted_lists(l1, l2):
+    dummy = ListNode()
+    current = dummy
+    
+    while l1 and l2:
+        if l1.val < l2.val:
+            current.next = l1
+            l1 = l1.next
+        else:
+            current.next = l2
+            l2 = l2.next
+        current = current.next
+    
+    current.next = l1 or l2
+    return dummy.next
+
+# Example usage
+# Create two sorted linked lists: 1 -> 2 -> 4 and 1 -> 3 -> 4
+l1 = ListNode(1)
+l1.next = ListNode(2)
+l1.next.next = ListNode(4)
+
+l2 = ListNode(1)
+l2.next = ListNode(3)
+l2.next.next = ListNode(4)
+
+merged_list = merge_sorted_lists(l1, l2)
+
+# Print merged sorted list: 1 -> 1 -> 2 -> 3 -> 4 -> 4
+while merged_list:
+    print(merged_list.val, end=" -> ")
+    merged_list = merged_list.next
+```
+
+These questions cover various topics such as array manipulation, string operations, linked list handling, and algorithmic thinking. Understanding and practicing solutions to these types of questions will strengthen your data structure and algorithm skills.
+
+
+Certainly! Here are a few more data structure and algorithm questions along with their solutions:
+
+### Question 1: Determine if a String has Unique Characters
+**Question:** Implement an algorithm to determine if a string has all unique characters.
+
+**Solution:**
+```python
+def has_unique_chars(s):
+    char_set = set()
+    for char in s:
+        if char in char_set:
+            return False
+        char_set.add(char)
+    return True
+
+# Example usage
+string = "algorithm"
+result = has_unique_chars(string)
+print("Has Unique Characters:", result)  # Output: False
+```
+
+### Question 2: Find the Intersection of Two Arrays
+**Question:** Given two arrays, write a function to compute their intersection.
+
+**Solution:**
+```python
+def intersection(nums1, nums2):
+    set1 = set(nums1)
+    set2 = set(nums2)
+    return list(set1.intersection(set2))
+
+# Example usage
+nums1 = [1, 2, 2, 1]
+nums2 = [2, 2]
+result = intersection(nums1, nums2)
+print("Intersection:", result)  # Output: [2]
+```
+
+### Question 3: Rotate an Array
+**Question:** Given an array, rotate the array to the right by k steps, where k is non-negative.
+
+**Solution:**
+```python
+def rotate_array(nums, k):
+    k %= len(nums)
+    nums[:] = nums[-k:] + nums[:-k]
+
+# Example usage
+nums = [1, 2, 3, 4, 5]
+k = 3
+rotate_array(nums, k)
+print("Rotated Array:", nums)  # Output: [3, 4, 5, 1, 2]
+```
+
+### Question 4: Find the Longest Substring Without Repeating Characters
+**Question:** Given a string, find the length of the longest substring without repeating characters.
+
+**Solution:**
+```python
+def longest_substring(s):
+    char_set = set()
+    max_length = start = 0
+    
+    for end, char in enumerate(s):
+        while char in char_set:
+            char_set.remove(s[start])
+            start += 1
+        char_set.add(char)
+        max_length = max(max_length, end - start + 1)
+    
+    return max_length
+
+# Example usage
+string = "abcabcbb"
+result = longest_substring(string)
+print("Longest Substring Length:", result)  # Output: 3
+```
+
+These questions cover various topics like strings, sets, array manipulation, and problem-solving techniques. Understanding these concepts and practicing similar problems will enhance your problem-solving skills in data structures and algorithms.
+
+
+Certainly! Here are a few more data structure and algorithm questions along with their solutions:
+
+### Question 1: Implement a Stack with Min() Function
+**Question:** Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+
+**Solution:**
+```python
+class MinStack:
+    def __init__(self):
+        self.stack = []
+        self.min_stack = []
+
+    def push(self, x):
+        self.stack.append(x)
+        if not self.min_stack or x <= self.min_stack[-1]:
+            self.min_stack.append(x)
+
+    def pop(self):
+        if self.stack:
+            if self.stack[-1] == self.min_stack[-1]:
+                self.min_stack.pop()
+            self.stack.pop()
+
+    def top(self):
+        if self.stack:
+            return self.stack[-1]
+
+    def get_min(self):
+        if self.min_stack:
+            return self.min_stack[-1]
+
+# Example usage
+min_stack = MinStack()
+min_stack.push(2)
+min_stack.push(1)
+min_stack.push(3)
+print("Minimum Element:", min_stack.get_min())  # Output: 1
+min_stack.pop()
+print("Top Element:", min_stack.top())  # Output: 1
+```
+
+### Question 2: Merge Intervals
+**Question:** Given a collection of intervals, merge overlapping intervals.
+
+**Solution:**
+```python
+def merge_intervals(intervals):
+    intervals.sort(key=lambda x: x[0])
+    merged = []
+    
+    for interval in intervals:
+        if not merged or interval[0] > merged[-1][1]:
+            merged.append(interval)
+        else:
+            merged[-1][1] = max(merged[-1][1], interval[1])
+    
+    return merged
+
+# Example usage
+intervals = [[1, 3], [2, 6], [8, 10], [15, 18]]
+result = merge_intervals(intervals)
+print("Merged Intervals:", result)  # Output: [[1, 6], [8, 10], [15, 18]]
+```
+
+### Question 3: Evaluate Reverse Polish Notation
+**Question:** Evaluate the value of an arithmetic expression in Reverse Polish Notation (postfix notation).
+
+**Solution:**
+```python
+def eval_rpn(tokens):
+    stack = []
+    operators = set(["+", "-", "*", "/"])
+    
+    for token in tokens:
+        if token not in operators:
+            stack.append(int(token))
+        else:
+            b = stack.pop()
+            a = stack.pop()
+            if token == "+":
+                stack.append(a + b)
+            elif token == "-":
+                stack.append(a - b)
+            elif token == "*":
+                stack.append(a * b)
+            elif token == "/":
+                stack.append(int(a / b))
+    
+    return stack[0]
+
+# Example usage
+tokens = ["2", "1", "+", "3", "*"]
+result = eval_rpn(tokens)
+print("Result:", result)  # Output: 9
+```
+
+These questions involve concepts like stacks, intervals, and evaluating expressions, showcasing a variety of problem-solving skills. Understanding these concepts and practicing similar problems will strengthen your data structure and algorithm skills.
+
+
+Certainly! Here are more data structure and algorithm questions along with their solutions:
+
+### Question 1: Find First Non-Repeating Character in a String
+**Question:** Given a string, find the first non-repeating character and return its index. If not found, return -1.
+
+**Solution:**
+```python
+def first_uniq_char(s):
+    char_count = {}
+    for char in s:
+        char_count[char] = char_count.get(char, 0) + 1
+    
+    for i, char in enumerate(s):
+        if char_count[char] == 1:
+            return i
+    return -1
+
+# Example usage
+string = "leetcode"
+result = first_uniq_char(string)
+print("First Unique Character Index:", result)  # Output: 0
+```
+
+### Question 2: Implement Trie (Prefix Tree)
+**Question:** Implement a trie with `insert`, `search`, and `startsWith` operations.
+
+**Solution:**
+```python
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.is_end_of_word = False
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word):
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                node.children[char] = TrieNode()
+            node = node.children[char]
+        node.is_end_of_word = True
+
+    def search(self, word):
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                return False
+            node = node.children[char]
+        return node.is_end_of_word
+
+    def starts_with(self, prefix):
+        node = self.root
+        for char in prefix:
+            if char not in node.children:
+                return False
+            node = node.children[char]
+        return True
+
+# Example usage
+trie = Trie()
+trie.insert("apple")
+print(trie.search("apple"))  # Output: True
+print(trie.search("app"))    # Output: False
+print(trie.starts_with("app"))  # Output: True
+```
+
+### Question 3: Longest Palindromic Substring
+**Question:** Given a string, find the longest palindromic substring in it.
+
+**Solution:**
+```python
+def longest_palindrome(s):
+    def expand_around_center(left, right):
+        while left >= 0 and right < len(s) and s[left] == s[right]:
+            left -= 1
+            right += 1
+        return s[left + 1:right]
+
+    longest = ""
+    for i in range(len(s)):
+        palindrome1 = expand_around_center(i, i)
+        palindrome2 = expand_around_center(i, i + 1)
+        palindrome = palindrome1 if len(palindrome1) > len(palindrome2) else palindrome2
+        if len(palindrome) > len(longest):
+            longest = palindrome
+    return longest
+
+# Example usage
+string = "babad"
+result = longest_palindrome(string)
+print("Longest Palindromic Substring:", result)  # Output: "bab"
+```
+
+These questions involve concepts like dictionaries, trees, and dynamic programming, demonstrating various problem-solving approaches. Understanding these concepts and practicing similar problems will enhance your data structure and algorithm skills.
+
+Certainly! Here are more data structure and algorithm questions along with their solutions:
+
+### Question 1: Trapping Rain Water
+**Question:** Given `n` non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.
+
+**Solution:**
+```python
+def trap(height):
+    left_max, right_max = 0, 0
+    left, right = 0, len(height) - 1
+    trapped_water = 0
+    
+    while left < right:
+        if height[left] < height[right]:
+            if height[left] > left_max:
+                left_max = height[left]
+            else:
+                trapped_water += left_max - height[left]
+            left += 1
+        else:
+            if height[right] > right_max:
+                right_max = height[right]
+            else:
+                trapped_water += right_max - height[right]
+            right -= 1
+    
+    return trapped_water
+
+# Example usage
+height = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]
+result = trap(height)
+print("Trapped Water:", result)  # Output: 6
+```
+
+### Question 2: Serialize and Deserialize Binary Tree
+**Question:** Serialize and deserialize a binary tree.
+
+**Solution:**
+```python
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Codec:
+    def serialize(self, root):
+        def dfs(node):
+            if not node:
+                result.append("None")
+            else:
+                result.append(str(node.val))
+                dfs(node.left)
+                dfs(node.right)
+        result = []
+        dfs(root)
+        return ",".join(result)
+
+    def deserialize(self, data):
+        def dfs():
+            val = next(values)
+            if val == "None":
+                return None
+            node = TreeNode(int(val))
+            node.left = dfs()
+            node.right = dfs()
+            return node
+        values = iter(data.split(","))
+        return dfs()
+
+# Example usage
+root = TreeNode(1)
+root.left = TreeNode(2)
+root.right = TreeNode(3)
+codec = Codec()
+serialized_tree = codec.serialize(root)
+deserialized_tree = codec.deserialize(serialized_tree)
+```
+
+### Question 3: Longest Increasing Subsequence
+**Question:** Given an unsorted array of integers, find the length of the longest increasing subsequence.
+
+**Solution:**
+```python
+def length_of_lis(nums):
+    if not nums:
+        return 0
+    dp = [1] * len(nums)
+    for i in range(1, len(nums)):
+        for j in range(i):
+            if nums[i] > nums[j]:
+                dp[i] = max(dp[i], dp[j] + 1)
+    return max(dp)
+
+# Example usage
+nums = [10, 9, 2, 5, 3, 7, 101, 18]
+result = length_of_lis(nums)
+print("Length of Longest Increasing Subsequence:", result)  # Output: 4
+```
+
+These questions involve concepts like two pointers, dynamic programming, and tree serialization, showcasing a variety of problem-solving skills. Understanding these concepts and practicing similar problems will strengthen your data structure and algorithm skills.
+
+Certainly! Here are more data structure and algorithm questions along with their solutions:
+
+### Question 1: Word Break
+**Question:** Given a string `s` and a dictionary of words, determine if `s` can be segmented into a space-separated sequence of one or more dictionary words.
+
+**Solution:**
+```python
+def word_break(s, wordDict):
+    word_set = set(wordDict)
+    dp = [False] * (len(s) + 1)
+    dp[0] = True
+    
+    for i in range(1, len(s) + 1):
+        for j in range(i):
+            if dp[j] and s[j:i] in word_set:
+                dp[i] = True
+                break
+    
+    return dp[len(s)]
+
+# Example usage
+s = "leetcode"
+wordDict = ["leet", "code"]
+result = word_break(s, wordDict)
+print("Word Break Possible:", result)  # Output: True
+```
+
+### Question 2: Valid Parentheses
+**Question:** Given a string containing just the characters `'(', ')', '{', '}', '['` and `']'`, determine if the input string is valid.
+
+**Solution:**
+```python
+def is_valid_parentheses(s):
+    stack = []
+    parentheses_map = {')': '(', '}': '{', ']': '['}
+    
+    for char in s:
+        if char in parentheses_map:
+            top_element = stack.pop() if stack else '#'
+            if parentheses_map[char] != top_element:
+                return False
+        else:
+            stack.append(char)
+    
+    return not stack
+
+# Example usage
+string = "([{}])"
+result = is_valid_parentheses(string)
+print("Valid Parentheses:", result)  # Output: True
+```
+
+### Question 3: Maximum Subarray Sum
+**Question:** Find the contiguous subarray within an array (containing at least one number) that has the largest sum.
+
+**Solution:**
+```python
+def max_subarray(nums):
+    max_sum = nums[0]
+    current_sum = nums[0]
+    
+    for num in nums[1:]:
+        current_sum = max(num, current_sum + num)
+        max_sum = max(max_sum, current_sum)
+    
+    return max_sum
+
+# Example usage
+nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+result = max_subarray(nums)
+print("Maximum Subarray Sum:", result)  # Output: 6
+```
+
+These questions involve dynamic programming and stack data structure, showcasing different algorithmic approaches. Understanding these concepts and practicing similar problems will strengthen your data structure and algorithm skills.
+
+Certainly! Here are more data structure and algorithm questions along with their solutions:
+
+### Question 1: Longest Common Prefix
+**Question:** Write a function to find the longest common prefix string amongst an array of strings.
+
+**Solution:**
+```python
+def longest_common_prefix(strs):
+    if not strs:
+        return ""
+    prefix = strs[0]
+    for string in strs[1:]:
+        i = 0
+        while i < len(prefix) and i < len(string) and prefix[i] == string[i]:
+            i += 1
+        prefix = prefix[:i]
+        if not prefix:
+            break
+    return prefix
+
+# Example usage
+strings = ["flower", "flow", "flight"]
+result = longest_common_prefix(strings)
+print("Longest Common Prefix:", result)  # Output: "fl"
+```
+
+### Question 2: Counting Elements
+**Question:** Given an integer array `arr`, count element `x` such that `x + 1` is also in `arr`.
+
+**Solution:**
+```python
+def count_elements(arr):
+    num_counts = {}
+    for num in arr:
+        num_counts[num] = num_counts.get(num, 0) + 1
+    count = 0
+    for num in num_counts:
+        if num + 1 in num_counts:
+            count += num_counts[num]
+    return count
+
+# Example usage
+arr = [1, 2, 3, 1, 2, 3, 4, 5]
+result = count_elements(arr)
+print("Count of Elements:", result)  # Output: 6
+```
+
+### Question 3: Maximum Depth of Binary Tree
+**Question:** Given a binary tree, find its maximum depth (the length of the longest path from the root node to a leaf node).
+
+**Solution:**
+```python
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def max_depth(root):
+    if not root:
+        return 0
+    left_depth = max_depth(root.left)
+    right_depth = max_depth(root.right)
+    return max(left_depth, right_depth) + 1
+
+# Example usage
+root = TreeNode(3)
+root.left = TreeNode(9)
+root.right = TreeNode(20)
+root.right.left = TreeNode(15)
+root.right.right = TreeNode(7)
+result = max_depth(root)
+print("Maximum Depth:", result)  # Output: 3
+```
+
+These questions involve string manipulation, array operations, and tree traversal, showcasing different aspects of problem-solving. Understanding these concepts and practicing similar problems will enhance your data structure and algorithm skills.
+
+
+Certainly! Here are more data structure and algorithm questions along with their solutions:
+
+### Question 1: Group Anagrams
+**Question:** Given an array of strings, group anagrams together.
+
+**Solution:**
+```python
+def group_anagrams(strs):
+    anagrams = {}
+    for word in strs:
+        sorted_word = ''.join(sorted(word))
+        if sorted_word in anagrams:
+            anagrams[sorted_word].append(word)
+        else:
+            anagrams[sorted_word] = [word]
+    return list(anagrams.values())
+
+# Example usage
+words = ["eat", "tea", "tan", "ate", "nat", "bat"]
+result = group_anagrams(words)
+print("Anagram Groups:", result)
+# Output: [["eat","tea","ate"],["tan","nat"],["bat"]]
+```
+
+### Question 2: Rotate Image
+**Question:** You are given an n x n 2D matrix representing an image. Rotate the image by 90 degrees (clockwise).
+
+**Solution:**
+```python
+def rotate(matrix):
+    n = len(matrix)
+    for i in range(n // 2):
+        for j in range(i, n - i - 1):
+            temp = matrix[i][j]
+            matrix[i][j] = matrix[n - j - 1][i]
+            matrix[n - j - 1][i] = matrix[n - i - 1][n - j - 1]
+            matrix[n - i - 1][n - j - 1] = matrix[j][n - i - 1]
+            matrix[j][n - i - 1] = temp
+
+# Example usage
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+rotate(matrix)
+print("Rotated Matrix:", matrix)
+# Output: [[7, 4, 1], [8, 5, 2], [9, 6, 3]]
+```
+
+### Question 3: Course Schedule
+**Question:** There are a total of numCourses courses you have to take, labeled from 0 to numCourses-1. Some courses may have prerequisites. Determine if it is possible to finish all courses.
+
+**Solution:**
+```python
+def can_finish(numCourses, prerequisites):
+    graph = [[] for _ in range(numCourses)]
+    for course, pre_req in prerequisites:
+        graph[course].append(pre_req)
+    visited = [0] * numCourses
+    
+    def dfs(course):
+        if visited[course] == -1:
+            return False
+        if visited[course] == 1:
+            return True
+        
+        visited[course] = -1
+        for pre_req in graph[course]:
+            if not dfs(pre_req):
+                return False
+        visited[course] = 1
+        return True
+    
+    for course in range(numCourses):
+        if not dfs(course):
+            return False
+    return True
+
+# Example usage
+numCourses = 2
+prerequisites = [[1, 0]]
+result = can_finish(numCourses, prerequisites)
+print("Can Finish All Courses:", result)
+# Output: True
+```
+
+These questions involve concepts like dictionaries, matrix rotation, and graph algorithms, showcasing a variety of problem-solving skills. Understanding these concepts and practicing similar problems will strengthen your data structure and algorithm skills.
+
+
+Certainly! Here are more data structure and algorithm questions along with their solutions:
+
+### Question 1: Group Anagrams
+**Question:** Given an array of strings, group anagrams together.
+
+**Solution:**
+```python
+def group_anagrams(strs):
+    anagrams = {}
+    for word in strs:
+        sorted_word = ''.join(sorted(word))
+        if sorted_word in anagrams:
+            anagrams[sorted_word].append(word)
+        else:
+            anagrams[sorted_word] = [word]
+    return list(anagrams.values())
+
+# Example usage
+words = ["eat", "tea", "tan", "ate", "nat", "bat"]
+result = group_anagrams(words)
+print("Anagram Groups:", result)
+# Output: [["eat","tea","ate"],["tan","nat"],["bat"]]
+```
+
+### Question 2: Rotate Image
+**Question:** You are given an n x n 2D matrix representing an image. Rotate the image by 90 degrees (clockwise).
+
+**Solution:**
+```python
+def rotate(matrix):
+    n = len(matrix)
+    for i in range(n // 2):
+        for j in range(i, n - i - 1):
+            temp = matrix[i][j]
+            matrix[i][j] = matrix[n - j - 1][i]
+            matrix[n - j - 1][i] = matrix[n - i - 1][n - j - 1]
+            matrix[n - i - 1][n - j - 1] = matrix[j][n - i - 1]
+            matrix[j][n - i - 1] = temp
+
+# Example usage
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+rotate(matrix)
+print("Rotated Matrix:", matrix)
+# Output: [[7, 4, 1], [8, 5, 2], [9, 6, 3]]
+```
+
+### Question 3: Course Schedule
+**Question:** There are a total of numCourses courses you have to take, labeled from 0 to numCourses-1. Some courses may have prerequisites. Determine if it is possible to finish all courses.
+
+**Solution:**
+```python
+def can_finish(numCourses, prerequisites):
+    graph = [[] for _ in range(numCourses)]
+    for course, pre_req in prerequisites:
+        graph[course].append(pre_req)
+    visited = [0] * numCourses
+    
+    def dfs(course):
+        if visited[course] == -1:
+            return False
+        if visited[course] == 1:
+            return True
+        
+        visited[course] = -1
+        for pre_req in graph[course]:
+            if not dfs(pre_req):
+                return False
+        visited[course] = 1
+        return True
+    
+    for course in range(numCourses):
+        if not dfs(course):
+            return False
+    return True
+
+# Example usage
+numCourses = 2
+prerequisites = [[1, 0]]
+result = can_finish(numCourses, prerequisites)
+print("Can Finish All Courses:", result)
+# Output: True
+```
+
+These questions involve concepts like dictionaries, matrix rotation, and graph algorithms, showcasing a variety of problem-solving skills. Understanding these concepts and practicing similar problems will strengthen your data structure and algorithm skills.
+
+Certainly! Here are more data structure and algorithm questions along with their solutions:
+
+### Question 1: Merge K Sorted Lists
+**Question:** Merge k sorted linked lists and return it as one sorted list.
+
+**Solution:**
+```python
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def merge_k_lists(lists):
+    import heapq
+    min_heap = []
+    for i, lst in enumerate(lists):
+        if lst:
+            heapq.heappush(min_heap, (lst.val, i, lst))
+    
+    dummy = ListNode()
+    current = dummy
+    while min_heap:
+        val, idx, node = heapq.heappop(min_heap)
+        current.next = node
+        current = current.next
+        if node.next:
+            heapq.heappush(min_heap, (node.next.val, idx, node.next))
+    
+    return dummy.next
+
+# Example usage
+# List 1: 1 -> 4 -> 5
+# List 2: 1 -> 3 -> 4
+# List 3: 2 -> 6
+lists = [ListNode(1, ListNode(4, ListNode(5))),
+         ListNode(1, ListNode(3, ListNode(4))),
+         ListNode(2, ListNode(6))]
+result = merge_k_lists(lists)
+while result:
+    print(result.val, end=" -> ")
+    result = result.next
+# Output: 1 -> 1 -> 2 -> 3 -> 4 -> 4 -> 5 -> 6 ->
+```
+
+### Question 2: Subarray Sum Equals K
+**Question:** Given an array of integers `nums` and an integer `k`, return the total number of continuous subarrays whose sum equals to `k`.
+
+**Solution:**
+```python
+def subarray_sum(nums, k):
+    prefix_sum = {0: 1}
+    count, current_sum = 0, 0
+    
+    for num in nums:
+        current_sum += num
+        if current_sum - k in prefix_sum:
+            count += prefix_sum[current_sum - k]
+        prefix_sum[current_sum] = prefix_sum.get(current_sum, 0) + 1
+    
+    return count
+
+# Example usage
+nums = [1, 1, 1]
+k = 2
+result = subarray_sum(nums, k)
+print("Number of Subarrays:", result)
+# Output: 2
+```
+
+### Question 3: First Missing Positive
+**Question:** Given an unsorted integer array, find the smallest missing positive integer.
+
+**Solution:**
+```python
+def first_missing_positive(nums):
+    if not nums:
+        return 1
+    n = len(nums)
+    
+    for i in range(n):
+        while 1 <= nums[i] <= n and nums[nums[i] - 1] != nums[i]:
+            nums[nums[i] - 1], nums[i] = nums[i], nums[nums[i] - 1]
+    
+    for i in range(n):
+        if nums[i] != i + 1:
+            return i + 1
+    
+    return n + 1
+
+# Example usage
+nums = [3, 4, -1, 1]
+result = first_missing_positive(nums)
+print("First Missing Positive:", result)
+# Output: 2
+```
+
+These questions involve concepts like heaps, prefix sums, and array manipulation, showcasing a variety of problem-solving skills. Understanding these concepts and practicing similar problems will enhance your data structure and algorithm skills.
+
+Certainly! Here are more data structure and algorithm questions along with their solutions:
+
+### Question 1: Binary Tree Maximum Path Sum
+**Question:** Given a binary tree, find the maximum path sum. The path may start and end at any node in the tree.
+
+**Solution:**
+```python
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:
+    def maxPathSum(self, root: TreeNode) -> int:
+        def helper(node):
+            nonlocal max_sum
+            if not node:
+                return 0
+            left_gain = max(helper(node.left), 0)
+            right_gain = max(helper(node.right), 0)
+            price_newpath = node.val + left_gain + right_gain
+            max_sum = max(max_sum, price_newpath)
+            return node.val + max(left_gain, right_gain)
+        
+        max_sum = float('-inf')
+        helper(root)
+        return max_sum
+
+# Example usage
+#   -10
+#   /  \
+#  9   20
+#      / \
+#   15   7
+root = TreeNode(-10)
+root.left = TreeNode(9)
+root.right = TreeNode(20)
+root.right.left = TreeNode(15)
+root.right.right = TreeNode(7)
+solution = Solution()
+result = solution.maxPathSum(root)
+print("Maximum Path Sum:", result)
+# Output: 42
+```
+
+### Question 2: Implement LRU Cache
+**Question:** Design and implement a data structure for Least Recently Used (LRU) cache. It should support get and put operations.
+
+**Solution:**
+```python
+from collections import OrderedDict
+
+class LRUCache:
+    def __init__(self, capacity: int):
+        self.cache = OrderedDict()
+        self.capacity = capacity
+
+    def get(self, key: int) -> int:
+        if key in self.cache:
+            value = self.cache.pop(key)
+            self.cache[key] = value
+            return value
+        return -1
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.cache:
+            self.cache.pop(key)
+        elif len(self.cache) == self.capacity:
+            self.cache.popitem(last=False)
+        self.cache[key] = value
+
+# Example usage
+cache = LRUCache(2)
+cache.put(1, 1)
+cache.put(2, 2)
+print(cache.get(1))  # Output: 1
+cache.put(3, 3)
+print(cache.get(2))  # Output: -1
+cache.put(4, 4)
+print(cache.get(1))  # Output: -1
+print(cache.get(3))  # Output: 3
+print(cache.get(4))  # Output: 4
+```
+
+### Question 3: Valid Parenthesis String
+**Question:** Given a string containing only three types of characters: '(', ')' and '*', write a function to check whether this string is valid.
+
+**Solution:**
+```python
+def check_valid_string(s: str) -> bool:
+    min_count, max_count = 0, 0
+    
+    for char in s:
+        if char == '(':
+            min_count += 1
+            max_count += 1
+        elif char == ')':
+            min_count = max(0, min_count - 1)
+            max_count -= 1
+        else:
+            min_count = max(0, min_count - 1)
+            max_count += 1
+        
+        if max_count < 0:
+            return False
+    
+    return min_count == 0
+
+# Example usage
+string = "(*)"
+result = check_valid_string(string)
+print("Is Valid String:", result)
+# Output: True
+```
+
+These questions involve concepts like trees, OrderedDict, and string manipulation, showcasing different aspects of problem-solving. Understanding these concepts and practicing similar problems will enhance your data structure and algorithm skills.
+
+
+Certainly! Here are more data structure and algorithm questions along with their solutions:
+
+### Question 1: Longest Palindromic Substring
+**Question:** Given a string s, find the longest palindromic substring in s.
+
+**Solution:**
+```python
+def longest_palindrome(s: str) -> str:
+    def expand_around_center(left, right):
+        while left >= 0 and right < len(s) and s[left] == s[right]:
+            left -= 1
+            right += 1
+        return s[left + 1:right]
+    
+    longest = ""
+    for i in range(len(s)):
+        odd_palindrome = expand_around_center(i, i)
+        even_palindrome = expand_around_center(i, i + 1)
+        palindrome = odd_palindrome if len(odd_palindrome) > len(even_palindrome) else even_palindrome
+        if len(palindrome) > len(longest):
+            longest = palindrome
+    return longest
+
+# Example usage
+string = "babad"
+result = longest_palindrome(string)
+print("Longest Palindromic Substring:", result)
+# Output: "bab" or "aba"
+```
+
+### Question 2: Word Search
+**Question:** Given a 2D board and a word, find if the word exists in the grid.
+
+**Solution:**
+```python
+def exist(board, word):
+    def dfs(i, j, k):
+        if not (0 <= i < len(board)) or not (0 <= j < len(board[0])) or board[i][j] != word[k]:
+            return False
+        if k == len(word) - 1:
+            return True
+        tmp, board[i][j] = board[i][j], '/'
+        result = dfs(i + 1, j, k + 1) or dfs(i - 1, j, k + 1) or dfs(i, j + 1, k + 1) or dfs(i, j - 1, k + 1)
+        board[i][j] = tmp
+        return result
+
+    for i in range(len(board)):
+        for j in range(len(board[0])):
+            if dfs(i, j, 0):
+                return True
+    return False
+
+# Example usage
+board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]
+word = "ABCCED"
+result = exist(board, word)
+print("Word Exists:", result)
+# Output: True
+```
+
+### Question 3: Find the Town Judge
+**Question:** In a town, there are N people labeled from 1 to N. There is a rumor that one of these people is secretly the town judge. If the town judge exists, then:
+1. The town judge trusts nobody.
+2. Everybody (except for the town judge) trusts the town judge.
+3. There is exactly one person that satisfies properties 1 and 2.
+
+**Solution:**
+```python
+def find_judge(N, trust):
+    trusted_count = [0] * (N + 1)
+    trusting_count = [0] * (N + 1)
+    
+    for a, b in trust:
+        trusted_count[b] += 1
+        trusting_count[a] += 1
+    
+    for i in range(1, N + 1):
+        if trusted_count[i] == N - 1 and trusting_count[i] == 0:
+            return i
+    return -1
+
+# Example usage
+N = 3
+trust = [[1,3],[2,3]]
+result = find_judge(N, trust)
+print("Town Judge:", result)
+# Output: 3
+```
+
+These questions involve concepts like backtracking, depth-first search, and graph traversal, showcasing different aspects of problem-solving. Understanding these concepts and practicing similar problems will enhance your data structure and algorithm skills.
+
+
+
+
+

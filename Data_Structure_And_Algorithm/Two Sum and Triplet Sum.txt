@@ -1,0 +1,5 @@
+Two Sum
+Given an array of integers and a target integer, you need to find two distinct indices (i, j) such that the elements at those indices sum up to the target. Design a solution using a hash table to efficiently determine the indices of the two numbers that satisfy this condition.
+ 
+Triplet Sum
+Given an array of integers and a target integer, you need to find all unique triplets in the array that sum up to the target. Design a solution using a hash table to efficiently determine the triplets that satisfy this condition, without duplicates in the result set. Each triplet should consist of distinct elements from the array.

@@ -1,0 +1,416 @@
+Final_Exam_Data_Structure
+
+2) [20 marks] Visa application reservation.
+• Reservation is required for the time to submit Visa application document and interview.
+• When the application is submitted, the reservation is removed from set of pending events
+• “Reserve request” specifies the requested time, t, to get service from the Visa office.
+• t will be added to the list of reservations if no other previous reservations are scheduled
+within k minutes both before and after t.
+Example
+17 21 26 29 36
+time (mins)
+now x x x x
+If k = 3,
+• 24 is not OK (must be at least 3 minutes away from 26)
+• 33 is OK
+• 10 is invalid (already past)
+Given that the accepted reservation list is R = [R[0], R[1], R[2], … , R[n-1]], where R[i] is the
+requested time of reservation i.
+You are to write a Python program that takes R and a new request time, t, as input. Then, the
+program either add this new reservation to the list or reject, depending on whether the criteria
+for reservation is met.
+a) [5 marks] Apply the insertion sort technique to keep the list R sorted all the time. Insert a
+new reservation into R only if it is at least k minutes away from both the reservations before
+and after t.
+b) [5 marks] If the length of R is n, what is the upperbound on the running time of the
+algorithm for proessing a new request in question a) above?
+c) [5 marks] As an alternative, if you store the reservation list R in a binary search tree, suggest
+the process of how t is to be determined whether it can be added into the list.
+d) [5 marks] Following the question c) above in which a binary search tree is utilized, what is
+the upperbound on the running time for processing a new request?
+
+---------------------
+
+Ans no.2
+
+a) Python Program using Insertion Sort:
+
+python
+
+def insert_reservation(R, t, k):
+    for i in range(len(R)):
+        if abs(R[i] - t) <= k:
+            return False
+    R.append(t)
+    for i in range(1, len(R)):
+        key = R[i]
+        j = i - 1
+        while j >= 0 and key < R[j]:
+            R[j + 1] = R[j]
+            j -= 1
+        R[j + 1] = key
+    return True
+
+# Example usage
+R = [17, 21, 26, 29, 36]
+t = 33
+k = 3
+if insert_reservation(R, t, k):
+    print(f"Reservation {t} added successfully: {R}")
+else:
+    print(f"Reservation {t} cannot be added due to conflicting times: {R}")
+
+b) Upperbound on Running Time:
+The upperbound on the running time for the given insertion sort algorithm is O(n^2), where n is the number of reservations in list R. This is because, in the worst case, the algorithm has to compare and swap elements for each pair of elements in the list.
+
+c) Using Binary Search Tree (BST) for Reservations:
+In a BST, each node has a left child (with a value less than the parent) and a right child (with a value greater than the parent). To add a new reservation t into the BST, compare it with the nodes:
+
+    If t is less than the current node, move to the left child.
+    If t is greater than the current node, move to the right child.
+    If t is equal to any node's value, reject the reservation (since it conflicts with an existing reservation).
+
+If you reach a null child, insert t as a new node.
+
+d) Upperbound on Running Time for BST:
+The upperbound on the running time for processing a new request using a BST is O(log n) for balanced trees, where n is the number of reservations. This is because in a balanced BST, the height of the tree is logarithmic in the number of nodes, ensuring efficient insertion and search operations. However, in the worst case (unbalanced tree), the running time can be O(n) if the tree degenerates into a linked list.
+
+
+-------------------------------
+
+3) [10 marks] A quicksort code, in Python, is given as
+def quicksort(p, r):
+global A
+if p < r:
+q = partition(p,r)
+print(A[p:q], A[q], A[q+1:r+1])
+quicksort(p,q-1)
+quicksort(q+1,r)
+Let A = [52, 37, 63, 14, 17, 8, 6, 25]. What are the output of quicksort(0, n-1)?
+You can assume any valid partitioning algorithm.
+
+Ans No.3
+
+The given quicksort code sorts an array `A` using the partitioning algorithm and recursive calls to quicksort on the subarrays. To understand the output of `quicksort(0, n-1)` for the array `A = [52, 37, 63, 14, 17, 8, 6, 25]`, let's go through the steps of the algorithm.
+
+Here's an example of how the array is partitioned:
+
+1. **Initial Array:** [52, 37, 63, 14, 17, 8, 6, 25]
+
+2. **First Partition (q = 3):**
+   - Left Subarray: [14, 8, 6]
+   - Pivot: 17
+   - Right Subarray: [52, 37, 63, 25]
+
+3. **Second Partition on Left Subarray (q = 1):**
+   - Left Subarray: [8, 6]
+   - Pivot: 14
+   - Right Subarray: []
+
+4. **Third Partition on Right Subarray (q = 5):**
+   - Left Subarray: [37, 25]
+   - Pivot: 52
+   - Right Subarray: [63]
+
+5. **Partition on Left Subarray (q = 4):**
+   - Left Subarray: [37]
+   - Pivot: 25
+   - Right Subarray: []
+
+6. **Partition on Right Subarray (q = 6):**
+   - Left Subarray: []
+   - Pivot: 63
+   - Right Subarray: []
+
+7. **Partition on Right Subarray (q = 2):**
+   - Left Subarray: [25]
+   - Pivot: 37
+   - Right Subarray: []
+
+8. **Partition on Right Subarray (q = 0):**
+   - Left Subarray: []
+   - Pivot: 25
+   - Right Subarray: []
+
+9. **Partition on Right Subarray (q = 7):**
+   - Left Subarray: [6]
+   - Pivot: 52
+   - Right Subarray: []
+
+10. **Partition on Right Subarray (q = 3):**
+   - Left Subarray: [6, 8, 25]
+   - Pivot: 17
+   - Right Subarray: [52, 37, 63]
+
+11. **Partition on Left Subarray (q = 0):**
+   - Left Subarray: [6, 8]
+   - Pivot: 6
+   - Right Subarray: []
+
+12. **Partition on Right Subarray (q = 2):**
+   - Left Subarray: [25]
+   - Pivot: 37
+   - Right Subarray: []
+
+13. **Partition on Right Subarray (q = 5):**
+   - Left Subarray: [52]
+   - Pivot: 63
+   - Right Subarray: []
+
+After these steps, the array is fully sorted. The output of `quicksort(0, n-1)` would be the individual subarrays obtained during the partitioning process. Please note that the output might vary based on the specific pivot selection and partitioning scheme used.
+
+------------------------------
+
+4) [10 marks] A mergesort code, in Python, is given as
+def mergesort(A, p, r):
+if p < r:
+q = (p+r)//2
+mergesort(A, p,q)
+mergesort(A, q+1,r)
+merge(A, p, q, r)
+print(A[p:r+1])
+Let A = [52, 37, 63, 14, 17, 8, 6, 25]. What are the output of mergesort(A, 0, n-1)?
+
+Ans No.4
+
+The given Python code implements the Merge Sort algorithm, which recursively divides the array into smaller subarrays until they are of size 1 or 0, then merges them back together in sorted order.
+
+For the input array `A = [52, 37, 63, 14, 17, 8, 6, 25]` and the initial call `mergesort(A, 0, n-1)`, where `n` is the length of the array, here's what happens:
+
+1. **First Split:**
+   - Left Subarray: `[52, 37, 63, 14]`
+   - Right Subarray: `[17, 8, 6, 25]`
+
+2. **Left Subarray Split:**
+   - Left Subarray: `[52, 37]`
+   - Right Subarray: `[63, 14]`
+
+3. **Left Subarray Split:**
+   - Left Subarray: `[52]`
+   - Right Subarray: `[37]`
+
+   *Merging `[52]` and `[37]` results in `[37, 52]`.*
+
+4. **Right Subarray Split:**
+   - Left Subarray: `[63]`
+   - Right Subarray: `[14]`
+
+   *Merging `[63]` and `[14]` results in `[14, 63]`.*
+
+5. **Merging Left Subarrays:**
+   *Merging `[37, 52]` and `[14, 63]` results in `[14, 37, 52, 63]`.*
+
+6. **Right Subarray Split:**
+   - Left Subarray: `[17, 8]`
+   - Right Subarray: `[6, 25]`
+
+7. **Left Subarray Split:**
+   - Left Subarray: `[17]`
+   - Right Subarray: `[8]`
+
+   *Merging `[17]` and `[8]` results in `[8, 17]`.*
+
+8. **Right Subarray Split:**
+   - Left Subarray: `[6]`
+   - Right Subarray: `[25]`
+
+   *Merging `[6]` and `[25]` results in `[6, 25]`.*
+
+9. **Merging Right Subarrays:**
+   *Merging `[8, 17]` and `[6, 25]` results in `[6, 8, 17, 25]`.*
+
+10. **Merging Final Subarrays:**
+    *Merging `[14, 37, 52, 63]` and `[6, 8, 17, 25]` results in `[6, 8, 14, 17, 25, 37, 52, 63]`.*
+
+The output of the `print(A[p:r+1])` statement inside the `mergesort` function for each step would be:
+
+```
+[37, 52]
+[14, 63]
+[14, 37, 52, 63]
+[8, 17]
+[6, 25]
+[6, 8, 17, 25]
+[6, 8, 14, 17, 25, 37, 52, 63]
+```
+
+This represents the sorted array after each merge step during the merge sort algorithm.
+
+-----------------------------
+
+5) [10 marks] Given a list of n distinct integers, write a Python program to find if there are two
+pairs (a, b) and (c, d) such that a*b = c*d, where a,b,c,d are all distinct integers. If there are
+multiple pairs that meet the criterion, print any of them.
+INPUT: A sequence of distinct integers, separated by space.
+OUTPUT: If the pairs exist, print the first two numbers (of the first pair), followed by a comma,
+followed by the second two numbers (of the second pair).
+If no pair exists, print “No pair exists”.
+Example
+INPUT OUTPUT
+7 4 3 1 8 9 6 3 8 , 4 6
+30 65 1 90 8 9 7 No pair exists
+The program must be able to handle a list of 2000 integers within 1 second.
+Hint: Use the provided code template.
+Requiring a technique for fast searching is inevitable
+
+Ans No.5
+
+To solve this problem efficiently, you can use a dictionary to store the product of all possible pairs. By iterating through the list of integers and checking if the product is already in the dictionary, you can find the pairs that meet the given criterion. Here's a Python program based on the provided code template:
+
+python
+
+def find_pairs(nums):
+    product_dict = {}
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):
+            product = nums[i] * nums[j]
+            if product in product_dict:
+                a, b = product_dict[product]
+                c, d = nums[i], nums[j]
+                if a != b and a != c and a != d and b != c and b != d and c != d:
+                    return (a, b, c, d)
+            else:
+                product_dict[product] = (nums[i], nums[j])
+    return None
+
+# Read input sequence of distinct integers
+nums = list(map(int, input().split()))
+
+# Find pairs and print the output
+result = find_pairs(nums)
+if result:
+    print(f"{result[0]} {result[1]}, {result[2]} {result[3]}")
+else:
+    print("No pair exists")
+
+This program defines a function find_pairs(nums) that takes a list of integers as input and finds the pairs (a, b) and (c, d) such that ab = cd. It then prints the pairs if they exist, or "No pair exists" otherwise.
+
+This algorithm has a time complexity of O(n^2) due to the nested loops. However, it should work well for the given constraint of handling a list of 2000 integers within 1 second.
+
+
+---------------------------------------
+
+Week 12
+
+a) Develop a Python 3 program of Prim’s algorithm and Diskstra’s SSSP algorithm.
+b) Understand the common mechanism of the two algorithms, and what distinguishes them.
+1) Review, as necessary, the “heap” data structure studied in week 3. Example codes for utilizing the
+heap are also provided at the end of the Heap.py file.
+2) Review the lecture note (or supplemental online resource) on how Prim’s algorithm may be
+implemented. Writing a Python 3 program for Prim’s algorithm requires the understanding of
+Python 3 class and heap data structure (to function as priority queue).
+Alternative online resource to review:
+• Prim's algorithm in 2 minutes - YouTube
+• Prims Algorithm for Minimum Spanning Trees - YouTube
+If these skills are acquired, you may proceed to write the program. If not, however, go back to step 1
+and/or 5 until this condition is satisfied.
+The only required output is the total cost of the MST.
+
+Ans week 12
+
+Certainly! Below are the Python implementations of Prim's algorithm and Dijkstra's Single Source Shortest Path (SSSP) algorithm, focusing on using the heap data structure as a priority queue. I'll provide both implementations with explanations.
+Prim's Algorithm using Heap (Minimum Spanning Tree):
+
+python
+
+import heapq
+
+class Graph:
+    def __init__(self):
+        self.graph = {}
+
+    def add_edge(self, u, v, weight):
+        if u not in self.graph:
+            self.graph[u] = []
+        if v not in self.graph:
+            self.graph[v] = []
+        self.graph[u].append((v, weight))
+        self.graph[v].append((u, weight))
+
+    def prim(self, start):
+        min_heap = [(0, start)]
+        visited = set()
+        total_cost = 0
+
+        while min_heap:
+            cost, node = heapq.heappop(min_heap)
+            if node not in visited:
+                visited.add(node)
+                total_cost += cost
+                for neighbor, edge_cost in self.graph[node]:
+                    if neighbor not in visited:
+                        heapq.heappush(min_heap, (edge_cost, neighbor))
+        return total_cost
+
+# Example usage of Prim's algorithm
+g = Graph()
+g.add_edge('A', 'B', 1)
+g.add_edge('B', 'C', 4)
+g.add_edge('C', 'A', 3)
+g.add_edge('A', 'D', 2)
+g.add_edge('D', 'C', 5)
+
+start_node = 'A'
+mst_cost = g.prim(start_node)
+print("Minimum Spanning Tree Cost (Prim's Algorithm):", mst_cost)
+
+Dijkstra's Single Source Shortest Path Algorithm using Heap:
+
+python
+
+import heapq
+
+class Graph:
+    def __init__(self):
+        self.graph = {}
+
+    def add_edge(self, u, v, weight):
+        if u not in self.graph:
+            self.graph[u] = []
+        self.graph[u].append((v, weight))
+
+    def dijkstra(self, start):
+        min_heap = [(0, start)]
+        distances = {node: float('inf') for node in self.graph}
+        distances[start] = 0
+
+        while min_heap:
+            current_distance, node = heapq.heappop(min_heap)
+
+            if current_distance > distances[node]:
+                continue
+
+            for neighbor, edge_weight in self.graph[node]:
+                distance = current_distance + edge_weight
+                if distance < distances[neighbor]:
+                    distances[neighbor] = distance
+                    heapq.heappush(min_heap, (distance, neighbor))
+
+        return distances
+
+# Example usage of Dijkstra's algorithm
+g = Graph()
+g.add_edge('A', 'B', 1)
+g.add_edge('A', 'C', 4)
+g.add_edge('B', 'D', 2)
+g.add_edge('C', 'D', 5)
+
+start_node = 'A'
+shortest_paths = g.dijkstra(start_node)
+print("Shortest Paths from node", start_node + ":", shortest_paths)
+
+Explanation:
+
+    Common Mechanism: Both algorithms utilize a min-heap (implemented using heapq in Python) as a priority queue to efficiently manage nodes with their respective costs. The min-heap ensures that the node with the smallest cost is always selected for exploration.
+
+    Distinguishing Factors:
+
+        Prim's Algorithm: Prim's algorithm focuses on finding a minimum spanning tree in a connected, undirected graph. It starts from an arbitrary node and grows the tree by selecting the smallest edge that connects a node in the tree to a node outside the tree, ensuring all nodes are connected with the minimum total edge weight.
+
+        Dijkstra's Algorithm: Dijkstra's algorithm calculates the shortest paths from a single source node to all other nodes in a weighted graph. It maintains a set of nodes whose shortest distance from the source is known, and iteratively explores neighboring nodes, updating their distances if a shorter path is found. Dijkstra's algorithm does not work well with negative edge weights.
+
+Both algorithms share the same priority queue mechanism but serve different purposes: Prim's algorithm constructs a minimum spanning tree, while Dijkstra's algorithm computes shortest paths from a single source node to all other nodes.
+-------------------------------------------------
+
+
+

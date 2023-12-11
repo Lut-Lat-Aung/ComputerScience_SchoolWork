@@ -1,0 +1,54 @@
+Here's the algorithm for changing the parent of a node `x` to a new parent `newp`, where `x` must be a leaf and the right-most child only, and the new parent will add `x` as the right-most child. I'll provide both Python code and pseudocode versions:
+
+Python Code:
+```python
+class TreeNode:
+    def __init__(self, value):
+        self.value = value
+        self.parent = None
+        self.left = None
+        self.right = None
+
+def CHANGE_PARENT(x, newp):
+    if x.parent is not None or x.left is not None:
+        raise ValueError("x must be a leaf and the right-most child only")
+    
+    if newp.right is not None:
+        raise ValueError("newp already has a right child")
+    
+    x.parent = newp
+    newp.right = x
+
+# Example usage:
+if __name__ == "__main__":
+    # Create nodes
+    leaf1 = TreeNode(1)
+    leaf2 = TreeNode(2)
+    new_parent = TreeNode(10)
+
+    # Establish parent-child relationships
+    leaf1.parent = new_parent
+    new_parent.right = leaf1
+
+    # Change the parent of leaf1 to new_parent
+    CHANGE_PARENT(leaf1, new_parent)
+
+    # Display the new relationships
+    print("New parent's right child:", new_parent.right.value)
+    print("Leaf 1's parent:", leaf1.parent.value)
+```
+
+Pseudocode:
+```
+CHANGE-PARENT(x, newp)
+    if x.parent is not null or x.left is not null
+        raise ValueError("x must be a leaf and the right-most child only")
+    
+    if newp.right is not null
+        raise ValueError("newp already has a right child")
+    
+    x.parent = newp
+    newp.right = x
+```
+
+This algorithm ensures that the conditions are met before changing the parent of the given node `x` to the new parent `newp`. It raises an error if the conditions are not satisfied to ensure the correctness of the operation.

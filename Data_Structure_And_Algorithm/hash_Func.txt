@@ -1,0 +1,49 @@
+import time
+
+def hash_func(s, table_size):
+    char_lst = []
+    value = 0
+    for char in s:
+        char_lst.append(char)
+    for each in char_lst:
+        value += ord(each)
+    return value % table_size
+
+def find_pairs_with_equal_products(nums):
+    n = len(nums)
+    hash_table = {}
+
+    for a in nums:
+        for b in nums:
+            if a == b:
+                continue
+            product_ab = a * b
+            if product_ab not in hash_table:
+                hash_table[product_ab] = (a, b)
+
+    for i in range(n):
+        for j in range(i + 1, n):
+            c = nums[i]
+            d = nums[j]
+            product_cd = c * d
+            if product_cd in hash_table:
+                if c != d and c != hash_table[product_cd][0] and c != hash_table[product_cd][1]:
+                    return hash_table[product_cd], (c, d)
+
+    return None
+
+if __name__ == "__main__":
+    nums = list(map(int, input().split()))
+
+    start_time = time.time()
+    result = find_pairs_with_equal_products(nums)
+    end_time = time.time()
+
+    if result:
+        (a, b), (c, d) = result
+        print(f"{a} {b}, {c} {d}")
+    else:
+        print("No pair exists")
+
+    execution_time = end_time - start_time
+    print(f"Execution time: {execution_time} seconds")

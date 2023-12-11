@@ -1,0 +1,31 @@
+This code defines a Red-Black Tree (RBT) data structure using object-oriented programming principles in Python. Red-Black Trees are a type of self-balancing binary search tree that ensures that the tree remains approximately balanced after insertions and deletions, thus maintaining efficient search and other operations. Let's break down the code step by step and explain each part:
+
+1. `class RB_Node`: Defines a class `RB_Node` representing a node in the Red-Black Tree.
+   - The `__init__` method initializes the node with a `key`, optional `data`, and pointers to the parent (`p`), left child (`left`), and right child (`right`) nodes.
+   - The `color` attribute is set to 1 (red) for new nodes.
+
+2. `class RBTree`: Defines a class `RBTree` representing the Red-Black Tree.
+   - The `__init__` method initializes an empty tree.
+   - It defines a `NULL` node that represents an empty child of a leaf node and has color 0 (black).
+   - The `root` is initially set to the `NULL` node.
+
+3. Various methods are defined within the `RBTree` class for performing different operations on the Red-Black Tree:
+   - `insert`: Inserts a new key into the tree by creating and inserting a new node with the given key. It then calls the `RB_Insert` method to fix the tree properties.
+   - `RB_Insert`: Inserts a new node into the tree while maintaining the Red-Black Tree properties. It uses rotation and recoloring to ensure that the properties are preserved.
+   - `LR`, `RR`: Perform left and right rotations on nodes to maintain the tree balance during insertions and deletions.
+   - `fixInsert`: Fixes any violations of the Red-Black Tree properties after an insertion.
+   - `fixDelete`: Fixes any violations of the Red-Black Tree properties after a deletion.
+   - `__rb_transplant`: Transplants one node with another during deletion.
+   - `Tree_Search`, `Tree_Successor`, `Tree_Predecessor`: Search for a key, find the successor and predecessor nodes.
+   - `delete_node_helper`, `RB_Delete`: Handle node deletion and fix tree properties accordingly.
+   - `delete`: Deletes a node with the given key from the tree.
+   - `__printCall`, `print_RBTree`: Methods to print the structure of the Red-Black Tree.
+
+4. The `RBTree` class encapsulates all the methods required for creating, modifying, and traversing a Red-Black Tree.
+
+5. The last part of the code defines the main program and demonstrates the usage of the `RBTree` class.
+   - The `print_RBTree` method is used to print the structure of the tree.
+   - The `insert` and `delete` methods are used to insert and delete nodes with specific keys.
+   - The code showcases how Red-Black Trees are maintained through rotations and recoloring to ensure that they satisfy the Red-Black Tree properties.
+
+In summary, this code provides a comprehensive implementation of a Red-Black Tree data structure in Python, allowing for efficient insertion, deletion, and searching while ensuring the balance and properties of the tree are maintained.

@@ -1,0 +1,36 @@
+Certainly, let's go through the provided code step by step and explain what each part does:
+
+1. The code starts by importing the `sys` module and using `sys.setrecursionlimit(10000)` to increase the recursion limit. This is done to allow deeper recursion in the recursive algorithms.
+
+2. The `partition` function is defined, implementing Lomuto's partition scheme for quicksort.
+   - A `counter` variable is used to count the number of comparisons made during the partitioning process.
+   - The function takes three parameters: the list `A`, and two indices `p` and `r` that define the subarray to be partitioned.
+   - The pivot element `x` is chosen as the last element of the subarray `A[r]`.
+   - An index `i` is initialized to `p-1`, which will be used to keep track of the position where elements less than or equal to the pivot will be placed.
+   - The `for` loop iterates through the range from `p` to `r-1`, inclusive. This loop goes through each element in the subarray except the pivot.
+   - Inside the loop, an `if` condition checks if the current element `A[j]` is less than or equal to the pivot element `x`.
+     - If this condition is true, `i` is incremented by 1 (`i += 1`).
+     - The elements at indices `i` and `j` are swapped using tuple assignment: `A[i], A[j] = A[j], A[i]`.
+   - After the loop, the pivot element is moved to its correct sorted position.
+     - The pivot element is swapped with the element at index `i+1`, effectively placing the pivot at the right boundary between elements less than or equal to it and elements greater than it.
+     - The `counter` value is returned, representing the number of comparisons made during the partitioning process.
+
+3. The `quickSort` function is defined to implement the quicksort algorithm.
+   - It takes three parameters: the list `arr`, and two indices `low` and `high` that define the subarray to be sorted.
+   - It uses the `partition` function to partition the array and recursively sorts the subarrays on either side of the pivot.
+
+4. The `printArray` function is defined to print an array.
+   - It takes two parameters: the list `arr` and the size of the array `size`.
+   - It prints each element of the array separated by a space.
+
+5. The code initializes the list `arr` with user-input values and obtains its length `n`.
+
+6. The `quickSort` function is called to sort the entire array `arr`.
+
+7. The sorted array is printed using the `printArray` function.
+
+8. The code initializes another list `A` with user-input values and defines `p` and `r`.
+
+9. The `partition` function is called to perform the partitioning process on the array `A` and the values of `p` and `r` are printed.
+
+In summary, this code implements the quicksort algorithm using Lomuto's partition scheme. It sorts an array of integers and prints the number of comparisons made during the partitioning process, as well as the partitioned indices. The `sys.setrecursionlimit(10000)` is used to adjust the recursion limit to handle larger input sizes.

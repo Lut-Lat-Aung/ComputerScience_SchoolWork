@@ -1,0 +1,32 @@
+Part2_Essay3
+
+12,5,3,11,15,7,10,13,14,6,4,17,8
+
+3.1 The resulting Red-Black Tree is
+R---- 10(BLACK)
+      L---- 5(BLACK)
+     |     L---- 3(BLACK)
+     |    |     R---- 4(RED)
+     |     R---- 7(BLACK)
+     |          L---- 6(RED)
+     |          R---- 8(RED)
+      R---- 12(BLACK)
+           L---- 11(BLACK)
+           R---- 14(RED)
+                L---- 13(BLACK)
+                R---- 15(BLACK)
+                     R---- 17(RED)
+
+3.2 the resulting Red-Black Tree after deleting 5 is
+R---- 11(BLACK)
+      L---- 7(RED)
+     |     L---- 4(BLACK)
+     |    |     L---- 3(RED)
+     |    |     R---- 6(RED)
+     |     R---- 10(BLACK)
+     |          L---- 8(RED)
+      R---- 13(RED)
+           L---- 12(BLACK)
+           R---- 15(BLACK)
+                L---- 14(RED)
+                R---- 17(RED)

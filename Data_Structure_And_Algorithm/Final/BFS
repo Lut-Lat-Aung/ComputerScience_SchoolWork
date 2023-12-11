@@ -1,0 +1,33 @@
+def bfs(graph, start):
+    n = len(graph)
+    visited = [False] * n
+    distances = [-1] * n
+    distances[start] = 0
+    queue = queue([start])
+
+    while queue:
+        current_vertex = queue.popleft()
+        for neighbor in graph[current_vertex]:
+            if not visited[neighbor]:
+                visited[neighbor] = True
+                distances[neighbor] = distances[current_vertex] + 1
+                queue.append(neighbor)
+    return distances
+
+# Read input
+n = int(input())
+graph = [[] for _ in range(n)]
+
+for _ in range(n):
+    line = input().split()
+    u = int(line[0])
+    if len(line) > 1:
+        neighbors = list(map(int, line[2:]))
+        graph[u-1].extend(neighbors)
+
+# Calculate distances using BFS
+distances = bfs(graph, 0)
+
+# Print output
+for i in range(n):
+    print(f"{i+1} {distances[i]}")

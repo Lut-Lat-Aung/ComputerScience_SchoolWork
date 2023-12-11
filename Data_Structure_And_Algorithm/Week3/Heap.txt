@@ -1,0 +1,41 @@
+This code implements a heap data structure in Python, which can be used to create both min heaps and max heaps. It also includes an example class definition for heap elements and demonstrates how to use the heap for sorting and extracting elements based on custom priorities.
+
+Let's break down the code step by step:
+
+1. A `heap` class is defined to create heap objects. The heap can be configured with a custom compare function to define the priority of elements in the heap.
+
+2. The `compare` method is defined inside the `heap` class. It is a default compare function for a min heap, which returns `True` if the first item has higher priority than the second (smaller value), and `False` otherwise.
+
+3. The `empty` method checks if the heap is empty by examining the heap size.
+
+4. The `heapify` method maintains the heap property by recursively adjusting elements to satisfy the heap property.
+
+5. The `insert` method inserts an element into the heap while maintaining the heap property.
+
+6. The `extract` method removes and returns the highest-priority element from the heap, then adjusts the heap to maintain its property.
+
+7. The `buildHeap` method constructs the heap by applying heapify to each non-leaf node in reverse order.
+
+8. The `__init__` method initializes the heap, taking an optional list of items and an optional custom compare function. It builds the heap and stores the heap size.
+
+9. An example class `myClass` is defined with a `key` attribute. This class can be used to create heap elements with custom priorities.
+
+10. Input is read from the user and stored in the `testList` variable.
+
+11. Two heaps, `pq1` and `pq2`, are created using the `heap` class:
+    - `pq1` uses default settings and sorts a list of numbers in ascending order (min heap).
+    - `pq2` is created with the custom compare function `myCompare` and is used for a heap of `myClass` elements.
+
+12. A loop inserts elements from the `testList` into `pq2`, creating `myClass` objects with custom priorities.
+
+13. The time before the loop (`st`) is recorded using `time.process_time()`.
+
+14. A `while` loop extracts and prints elements from `pq1` (min heap), demonstrating sorting using the heap.
+
+15. Another `while` loop extracts and prints elements from `pq2` (max heap), using the `key` attribute of `myClass` objects for custom priorities.
+
+16. The time after the loop (`en`) is recorded using `time.process_time()`.
+
+17. The code prints the execution time of the operations.
+
+In summary, this code showcases the implementation of a heap data structure, demonstrates how to use it to sort elements in ascending and descending order, and provides an example of creating custom priority objects for the heap. The heap's flexibility and efficient operations make it a useful data structure for various applications, such as sorting, priority queues, and scheduling algorithms.

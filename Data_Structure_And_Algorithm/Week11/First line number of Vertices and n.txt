@@ -1,0 +1,20 @@
+First line: number of Vertices and number Edges
+
+Each line list the two vertices the form the corresponding edge. vertex are from 0 to v-1
+
+the last line list two vertex  indeices to be checked by the program
+
+Out put yes if the two given vertices are connected no, otherwise.
+
+Input 
+3 2
+ 0 1
+0 2 
+1 2 
+
+Yes
+
+Input 4 2
+ 0 3
+1 2
+1 3

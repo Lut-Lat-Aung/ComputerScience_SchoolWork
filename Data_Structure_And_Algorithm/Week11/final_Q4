@@ -1,0 +1,48 @@
+import heapq
+
+class Graph:
+    def __init__(self):
+        self.graph = {}
+
+    def add_edge(self, u, v, weight):
+        if u not in self.graph:
+            self.graph[u] = []
+        if v not in self.graph:
+            self.graph[v] = []
+        self.graph[u].append((v, weight))
+        self.graph[v].append((u, weight))
+
+    def kruskal(self, start):
+        min_heap = [(0, start)]
+        visited = set()
+        total_cost = 0
+
+        while min_heap:
+            cost, node = heapq.heappop(min_heap)
+            if node not in visited:
+                visited.add(node)
+                total_cost += cost
+                for neighbor, edge_cost in self.graph[node]:
+                    if neighbor not in visited:
+                        heapq.heappush(min_heap, (edge_cost, neighbor))
+        return total_cost
+    
+g = Graph()
+g.add_edge('0', '1', 4)
+g.add_edge('0', '7', 8)
+g.add_edge('1', '7', 11)
+g.add_edge('1', '2', 8)
+g.add_edge('7', '8', 7)
+g.add_edge('7', '6', 1)
+g.add_edge('6', '8', 6)
+g.add_edge('8', '2', 2)
+g.add_edge('2', '3', 7)
+g.add_edge('2', '5', 4)
+g.add_edge('6', '5', 2)
+g.add_edge('5', '3', 14)
+g.add_edge('3', '4', 9)
+g.add_edge('5', '4', 10)
+
+start_node = '0'
+mst_cost = g.kruskal(start_node)
+print("Minimum Spanning Tree Cost (kruskal's Algorithm):", mst_cost)

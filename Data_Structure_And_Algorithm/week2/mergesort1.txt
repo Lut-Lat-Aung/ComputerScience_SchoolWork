@@ -1,0 +1,36 @@
+Certainly, I'd be happy to explain this code to you. This code implements the merge sort algorithm, a popular sorting algorithm that follows the divide-and-conquer paradigm. Let's go through the code step by step:
+
+1. The `merge` function is defined to merge two sorted subarrays of array `A`.
+   - `A` is the original array.
+   - `p`, `q`, and `r` are indices such that `p <= q < r`. These indices specify the subarrays: `A[p:q+1]` and `A[q+1:r+1]`.
+   - A new empty list `B` is created to store the merged result.
+   - Two pointers `i` and `j` are initialized to the start of the two subarrays.
+   - The `while` loop iterates as long as both pointers are within their respective subarrays.
+     - It compares the elements at `A[i]` and `A[j]` and appends the smaller (or equal) element to list `B`.
+     - The pointer of the selected element is then incremented.
+   - After the loop, the remaining elements from both subarrays are added to `B`.
+   - Finally, the merged result in list `B` is assigned back to the appropriate portion of the original array `A`.
+
+2. The `mergesort` function is defined to sort a subarray of array `A`.
+   - `A` is the array.
+   - `p` and `r` are indices representing the portion of the array to be sorted: `A[p:r+1]`.
+   - The function recursively divides the array into smaller subarrays until it reaches subarrays of size 1.
+   - The base case is when `p` is no longer less than `r`.
+   - In the recursive case, the middle index `q` is calculated, and the function is called recursively on the left and right halves of the array.
+   - After the recursive calls, the `merge` function is called to merge the two sorted halves.
+
+3. The main part of the code reads a list of integers `a` from the user.
+
+4. The `time` module is imported to measure the execution time of the program.
+
+5. The `time.process_time()` function is used to record the starting time of the program's execution.
+
+6. The `mergesort` function is called to sort the entire array `a`.
+
+7. The ending time of the program's execution is recorded using `time.process_time()`.
+
+8. The sorted array `a` is printed.
+
+9. The program prints the execution time of the merge sort algorithm.
+
+In summary, this code implements the merge sort algorithm, which recursively divides an array into smaller subarrays, sorts them, and then merges the sorted subarrays to obtain the final sorted array. Merge sort has a time complexity of O(n log n), making it more efficient than some other sorting algorithms for larger input sizes.

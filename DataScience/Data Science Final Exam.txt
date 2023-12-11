@@ -1,0 +1,37 @@
+Data Science Final Exam
+
+use pencil
+
+True / False
+1 is True
+2 is False
+
+First part
+bring all papers only (No computer)
+
+Second part
+Can use Personal computer (no internet) (No communication)
+
+Confounder
+Colleration
+Scatter plot
+Matrix that evaluate 
+
+Accuracy precision
+Concatination
+Data joining
+Distribution (Narrow shape, Uniform)
+Intoduction to Statistic slides
+
+Central Limit Theorem
+
+All open book
+
+Mechain Learning testing
+X_new = np.array([ [   ], [   ] ])
+
+For data set
+Ajarn will upload around 12:45
+
+
+

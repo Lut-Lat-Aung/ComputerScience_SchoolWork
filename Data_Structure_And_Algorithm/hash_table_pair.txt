@@ -1,0 +1,79 @@
+Given an array of distinct integers, the task is to find two pairs (a, b) and (c, d) such that ab = cd, where a, b, c and d are distinct elements.
+
+Examples: 
+
+Input  : arr[] = {3, 4, 7, 1, 2, 9, 8}
+Output : 4 2 and 1 8
+Product of 4 and 2 is 8 and 
+also product of 1 and 8 is 8 .
+
+Input  : arr[] = {1, 6, 3, 9, 2, 10};
+Output : 6 3 and 9 2
+
+A Simple Solution is to run four loops to generate all possible quadruples of array element. For every quadruple (a, b, c, d), check if a*b = c*d. Time complexity of this solution is O(n4).
+
+An Efficient Solution of this problem is to use hashing. We use product as key and pair as value in hash table. 
+
+
+1. For i=0 to n-1
+2.   For j=i+1 to n-1
+       a) Find  prod = arr[i]*arr[j]       
+       b) If prod is not available in hash then make 
+            H[prod] = make_pair(i, j) // H is hash table
+       c) If product is also available in hash 
+          then print previous and current elements
+          of array 
+
+
+# Python3 program to find four elements
+# a, b, c and d in array such that ab = cd
+ 
+# Function to find out four elements in array
+# whose product is ab = cd
+def findPairs(arr, n):
+ 
+    found = False
+    H = dict()
+ 
+    for i in range(n):
+ 
+        for j in range(i + 1, n):
+         
+            # If product of pair is not in hash table,
+            # then store it
+            prod = arr[i] * arr[j]
+ 
+            if (prod not in H.keys()):
+                H[prod] = [i, j]
+ 
+            # If product of pair is also available in
+            # then print current and previous pair
+            else:
+             
+                pp = H[prod]
+                print(arr[pp[0]], arr[pp[1]],
+                      "and", arr[i], arr[j])
+                found = True
+     
+    # If no pair find then print not found
+    if (found == False):
+        print("No pairs Found")
+ 
+# Driver code
+arr = [1, 2, 3, 4, 5, 6, 7, 8]
+n = len(arr)
+findPairs(arr, n)
+ 
+# This code is contributed
+# by mohit kumar
+Output
+
+1 6 and 2 3
+1 8 and 2 4
+2 6 and 3 4
+3 8 and 4 6
+
+
+
+Time Complexity: O(n2) assuming hash search and insert operations take O(1) time.
+Auxiliary Space: O(n2)

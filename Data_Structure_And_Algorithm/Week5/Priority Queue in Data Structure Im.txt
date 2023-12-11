@@ -1,0 +1,70 @@
+Priority Queue in Data Structure: Implementation, Types, and More
+By Simplilearn
+Last updated on Feb 21, 202330464
+Everything You Need to Know About Priority Queue in a Data Structure
+Table of Contents
+Introduction to Priority Queue in Data Structure
+Characteristics of Priority Queue
+Representation of Priority Queue
+Different Implementation Strategies for Priority Queue
+What is Heap?
+View More
+
+The priority queue in a data structure is used in Google Maps for searching the optimal path to reach any destination. Dijkstra’s Shortest Path algorithm utilizes a min priority queue to store all possible paths to reach the destination, considering distance as a parameter for priority assignment. In the end, it will return the element with the highest priority as the optimal route. So, in this tutorial, you will discover priority queue in data structure to understand their functionalities and applications.
+
+Basics to Advanced - Learn It All!
+Caltech PGP Full Stack DevelopmentExplore Program
+Basics to Advanced - Learn It All!
+
+Introduction to Priority Queue in Data Structure
+
+Priority Queue is an abstract data type that performs operations on data elements per their priority. To understand it better, first analyze the real-life scenario of a priority queue. 
+
+The hospital emergency queue is an ideal real-life example of a priority queue. In this queue of patients, the patient with the most critical situation is the first in a queue, and the patient who doesn’t need immediate medical attention will be the last. In this queue, the priority depends on the medical condition of the patients.
+
+Priority_queue_in_Data_structure
+
+The priority queue in data structure resembles the properties of the hospital emergency queue. Thus, it is highly used in sorting algorithms. It behaves similar to a linear queue except for the fact that each element has some priority assigned to it. The priority of elements determines the order of removal in a queue, i.e., the element with higher priority will leave the queue first, whereas the element with the lowest priority at last.
+
+Example_of_PQ
+Basics to Advanced - Learn It All!
+Caltech PGP Full Stack DevelopmentExplore Program
+Basics to Advanced - Learn It All!
+Characteristics of Priority Queue
+
+Priority queue in a data structure is an extension of a linear queue that possesses the following properties:
+
+    Every element has a certain priority assigned to it.
+    Every element of this queue must be comparable.
+    It will delete the element with higher priority before the element with lower priority.
+    If multiple elements have the same priority, it does their removal from the queue according to the FCFS principle.
+
+Now, understand these properties with the help of an example. Consider you have to insert 7, 2, 45, 32, and 12 in a priority queue. The element with the least value has the highest property. Thus, you should maintain the lowest element at the front node. 
+
+Working_example_of_Priority_Queue
+
+The image above shows how it maintains the priority during insertion in a queue. But, if you carry the N comparisons for each insertion, time-complexity will become O(N^2).
+Representation of Priority Queue
+
+You can also implement a priority queue using arrays, however, if you consider array implementation of the priority queue, then inserting elements into the sorted array will cost you O(n). In general, processing each element will further cost you O(n^2). Because of this complexity, implementing a priority queue using arrays is not an ideal approach. Hence, you will only learn about the representation of the priority queue using a linked list. 
+
+Consider a linked queue having 3 data elements 3, 17, 43, respectively. It arranges all these elements according to priority. But, what if you have to insert a new node into the linked queue consisting of value 2? Since 2 is smaller than the element at the front (head) node, insertion from the front will be more efficient. Additionally, it will allow you to have O(1) time-complexity during deletion.
+
+Insertion_of-2_Linked_PriorityQueue
+
+The diagram above shows how it will insert the new node consisting of elements in a linked queue. This particular scenario of insertion seems perfect as it doesn’t cost you more time. But what if the element is significantly larger than all the nodes of a queue? 
+
+For instance, say you want to insert a node consisting of element 45. Here, it will compare element 45 with each element inside the queue. However, this insertion will cost you O(N). Representation of the linked queue below displays how it will insert element 45 in a priority queue.
+
+/Insertion_of-45_Linked_Priority_queue
+Different Implementation Strategies for Priority Queue
+
+Three approaches implement a priority queue in data structure with a complexity less than O(n^2). They are shown in the table below:
+
+Complexity_Analysis_for_Implementation_Strategies
+
+Binary heap and binary tree provide almost similar complexities. These approaches cost you O(logn) for insertion and deletion and O(1) for peek operation. But, which approach is the best to implement a priority queue?
+
+To answer this question, you need to explore memory management in the case of both data structures. Since binary heap utilizes arrays, there is always a better locality of reference, and operations become more cache-friendly. Whereas, the Binary search trees use pointers to implement front and rear nodes, which takes up more space in memory. Hence, building a self-balancing BST’s cost O(NlogN) where binary heap just costs you O(n). These facts clarify that the Binary Heap is the best data structure for priority queue implementation.
+
+Moving forward, you will understand what heap data structure is and how it works.

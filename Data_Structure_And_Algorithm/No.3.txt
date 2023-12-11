@@ -1,0 +1,43 @@
+To find the number of times `MAX-HEAPIFY` is called in `BUILD-MAX-HEAP(A)`, where `A = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`, let's walk through the process of building a max heap using the given algorithm. We'll keep track of the number of times `MAX-HEAPIFY` is called.
+
+Here's the `BUILD-MAX-HEAP` algorithm:
+
+```
+BUILD-MAX-HEAP(A)
+A.heap-size = A.length
+for i = ⌊A.length / 2⌋ down to 1
+    MAX-HEAPIFY(A, i)
+```
+
+And the `MAX-HEAPIFY` algorithm you provided:
+
+```
+MAX-HEAPIFY(A, i)
+l = Left(i)
+r = Right(i)
+if l <= A.heap-size and A[l] > A[i]
+    largest = l
+else largest = i
+if r <= A.heap-size and A[r] > A[largest]
+    largest = r
+if largest != i 
+    exchange A[i] with A[largest]
+    MAX-HEAPIFY(A, largest)
+```
+
+Now, let's analyze the process step by step:
+
+1. The `BUILD-MAX-HEAP` algorithm starts by setting `A.heap-size` to `A.length`, which is 10.
+2. The outer loop iterates from `i = ⌊10 / 2⌋ = 5` down to `1`.
+
+   For `i = 5` (the index of element `5`), we call `MAX-HEAPIFY(A, 5)`, which makes no recursive calls.
+   For `i = 4` (the index of element `4`), we call `MAX-HEAPIFY(A, 4)`, which makes 1 recursive call.
+   For `i = 3` (the index of element `3`), we call `MAX-HEAPIFY(A, 3)`, which makes no recursive calls.
+   For `i = 2` (the index of element `2`), we call `MAX-HEAPIFY(A, 2)`, which makes 1 recursive call.
+   For `i = 1` (the index of element `1`), we call `MAX-HEAPIFY(A, 1)`, which makes 2 recursive calls.
+
+3. During these calls to `MAX-HEAPIFY`, the algorithm performs comparisons and potential swaps based on the values in the array to ensure the max heap property is maintained.
+
+Overall, in this specific example, `MAX-HEAPIFY` is called a total of `0 + 1 + 0 + 1 + 2 = 4` times during the `BUILD-MAX-HEAP` process.
+
+Please note that the number of calls to `MAX-HEAPIFY` can vary depending on the initial order of elements in the array and how the max heap is built. The analysis provided here is specific to the given input array `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`.

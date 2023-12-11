@@ -1,0 +1,18 @@
+Part2_Essay4
+
+MAX-HEAPIFY is called 4 times in BUILD-MAX-HEAP(A)
+where A = [1,2,3,4,5,6,7,8,9,10]
+
+Step 1. The `BUILD-MAX-HEAP` algorithm starts by setting `A.heap-size` to `A.length`, which is 10.
+
+Step 2. The outer loop iterates from `i = ⌊10 / 2⌋ = 5` down to `1`.
+
+   For `i = 5` (the index of element `5`), we call `MAX-HEAPIFY(A, 5)`, which makes no recursive calls.
+   For `i = 4` (the index of element `4`), we call `MAX-HEAPIFY(A, 4)`, which makes 1 recursive call.
+   For `i = 3` (the index of element `3`), we call `MAX-HEAPIFY(A, 3)`, which makes no recursive calls.
+   For `i = 2` (the index of element `2`), we call `MAX-HEAPIFY(A, 2)`, which makes 1 recursive call.
+   For `i = 1` (the index of element `1`), we call `MAX-HEAPIFY(A, 1)`, which makes 2 recursive calls.
+
+Step 3. During these calls to `MAX-HEAPIFY`, the algorithm performs comparisons and potential swaps based on the values in the array to ensure the max heap property is maintained.
+
+Overall, in this specific example, `MAX-HEAPIFY` is called a total of `0 + 1 + 0 + 1 + 2 = 4` times during the `BUILD-MAX-HEAP` process.

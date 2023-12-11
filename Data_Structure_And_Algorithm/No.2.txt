@@ -1,0 +1,23 @@
+Certainly, let's analyze the running time of the Bubble Sort algorithm on the given array `A = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`.
+
+Bubble Sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. The algorithm keeps repeating this process until the entire list is sorted.
+
+Here's the pseudocode you provided with minor corrections:
+
+```
+BUBBLESORT(A)
+for i = 1 to A.length - 1
+    for j = A.length downto i + 1
+        if A[j] < A[j - 1]
+            exchange A[j] with A[j - 1]
+```
+
+Now, let's analyze the running time step by step:
+
+1. The outer loop iterates from `i = 1` to `A.length - 1`, which is a total of 9 iterations.
+2. Within each iteration of the outer loop, there's an inner loop that iterates from `j = A.length` down to `i + 1`. In the worst case, for each `i`, this inner loop would iterate `n - i` times, where `n` is the number of elements in the array (10 in this case).
+3. Inside the inner loop, there is a comparison and a potential exchange operation. Both of these operations are constant time operations.
+
+Considering these steps, the worst-case time complexity of Bubble Sort is O(n^2), where n is the number of elements in the array. In the worst case, the algorithm needs to make a quadratic number of comparisons and swaps.
+
+It's worth noting that Bubble Sort is not very efficient for larger arrays and is generally considered one of the slowest sorting algorithms in terms of time complexity. Other more efficient sorting algorithms like Quick Sort, Merge Sort, or Heap Sort are preferred for larger datasets due to their better average and worst-case performance.

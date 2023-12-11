@@ -1,0 +1,31 @@
+This code is an implementation of a program that tries to find a pair of numbers in a given list whose product is equal to a given target value K. It uses a binary search algorithm to efficiently search for a number in the sorted list.
+
+Here's a breakdown of how the code works:
+
+1. The code starts by importing the `time` module to measure the execution time of the program.
+
+2. It reads an integer K from the user, representing the target value for which the program needs to find a pair of numbers that multiply to K.
+
+3. It reads a list of integers 'a' from the user. This list represents the set of numbers in which the program will search for a pair whose product is equal to K.
+
+4. The `time.process_time()` function is used to record the starting time of the program's execution.
+
+5. The list 'a' is sorted using the `sort()` method, which rearranges the elements in ascending order.
+
+6. The `BinSrch(key, p, r)` function is defined. This function performs binary search on the sorted list 'a' to find a value equal to 'key' within the range between indices 'p' and 'r'. If the value is found, the function returns `True` along with the index of the found value; otherwise, it returns `False` and -1.
+
+7. The variable 'found' is initialized to `False`, indicating that a pair of numbers with the desired product has not been found yet.
+
+8. The code then iterates through each element 'x' in the sorted list 'a'. For each 'x', it calculates the value 'y' by dividing K by 'x', representing the number that needs to be found to satisfy the condition 'x * y = K'.
+
+9. The `BinSrch(y, 0, len(a)-1)` function is called to search for the value 'y' in the sorted list 'a'. If 'y' is found in the list, the 'found' variable is set to `True`, and the index 'j' of the found value is recorded. The loop breaks if a pair of numbers is found.
+
+10. The ending time of the program's execution is recorded using `time.process_time()`.
+
+11. If a pair of numbers whose product is equal to K is not found, the program prints "No pair multiplies to k."
+
+12. If a pair of numbers is found, the program prints the values of 'x' and 'y' that form the desired product.
+
+13. Finally, the code prints the execution time of the program.
+
+It's important to note that this implementation assumes that the input list 'a' is sorted in ascending order. Additionally, the program assumes that the target value K and the list 'a' are valid inputs.

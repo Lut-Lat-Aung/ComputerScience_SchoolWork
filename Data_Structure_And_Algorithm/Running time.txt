@@ -1,0 +1,6 @@
+The running time analysis of the insertion sort algorithm on A, where A = [1,2,3,4,5,6,7,8,9,10] is as follows:
+
+Best case: The best case occurs when the array is already sorted. In this case, the insertion sort algorithm only needs to make one comparison per element, for a total of n comparisons. Therefore, the best case time complexity of insertion sort is O(n).
+Average case: The average case occurs when the array is randomly ordered. In this case, the insertion sort algorithm will need to make n comparisons on the first element, n-1 comparisons on the second element, and so on. Therefore, the average case time complexity of insertion sort is O(n^2).
+Worst case: The worst case occurs when the array is in reverse sorted order. In this case, the insertion sort algorithm will need to make n comparisons on the first element, n-1 comparisons on the second element, and so on. Therefore, the worst case time complexity of insertion sort is also O(n^2).
+In conclusion, the running time of the insertion sort algorithm is O(n^2) in the best case, O(n^2) in the average case, and O(n^2) in the worst case.

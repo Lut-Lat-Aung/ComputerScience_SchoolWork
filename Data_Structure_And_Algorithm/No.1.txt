@@ -1,0 +1,28 @@
+Certainly, let's analyze the running time of the Insertion Sort algorithm on the given array `A = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`.
+
+Insertion Sort is a simple sorting algorithm that builds the final sorted array one item at a time. It works by iteratively considering each element and inserting it into its correct position within the sorted portion of the array.
+
+In your pseudocode, there's a minor issue: the loop should start from index 1 (`j = 2`) instead of 2 (`for j --> 2`).
+
+Here's the corrected pseudocode:
+
+```
+INSERTION-SORT(A)
+for j = 2 to length[A]
+    key = A[j]
+    i = j - 1
+    while i > 0 and A[i] > key
+        A[i + 1] = A[i]
+        i = i - 1
+    A[i + 1] = key
+```
+
+Now, let's analyze the running time step by step:
+
+1. The outer loop iterates from `j = 2` to `length[A] = 10`, which is a constant number of iterations (8 iterations).
+2. Within each iteration of the outer loop, we have a while loop that iterates as long as `i` is greater than 0 and `A[i]` is greater than `key`. In the worst case, when we are inserting the smallest element (`key = 1`) into the sorted portion of the array, this inner loop will have to iterate `j - 1` times for each iteration of the outer loop. Since `j` goes from 2 to 10, the average number of comparisons in the inner loop would be around `9 / 2 = 4.5` on average.
+3. The remaining operations within the loop (assignment and comparison) are constant time operations.
+
+Considering these steps, the worst-case time complexity of Insertion Sort is O(n^2), where n is the number of elements in the array. However, this is a simplified analysis and does not consider the best-case or average-case scenarios.
+
+In the best-case scenario, if the input array is already sorted, the inner while loop would rarely execute, resulting in a linear time complexity of O(n). In practical scenarios, Insertion Sort can be efficient for small input sizes or partially sorted arrays, but for larger arrays, more advanced sorting algorithms like Quick Sort or Merge Sort are generally preferred due to their better average-case and worst-case time complexity.
