@@ -1,0 +1,33 @@
+Data Science Lifecycle
+1. Business Understanding
+2. Data Mining
+3. Data Cleaning
+4. Data Exploration
+5. Feature Engineering
+6. Predictive Modeling
+7. Data Visualization
+
+Structured data - (customer records, sales transactions)
+Unstructured data - (images, videos, text messages)
+
+for order = n! / (n-k)!
+
+for random = n! / k! (n-k)!
+
+
+
+Bayes Theorem 
+ P(A|B) = P(A n B) / P(B)
+
+
+P(A n B) ဆိုတာ P(B|A) P(A) လို့ သဘောထားလို့ ရပါတယ်
+အဲ့တော့မှ Bayes Theorem မှာ ပြန်အစားသွင်းလိုက်ရင် 
+တွက်လို့ ရတာမျိုး ရှိလို့ပါ
+
+P(A|B) = P(B|A) P(A) / P(B)
+
+ပြီးတော့ p(B) ကို P(B|A) P(A) + P(B|A*c) P(A*c) ထားလိုက်တယ်
+အဲ့လိုမျိုး ဆက်တွက်ကြတယ်
+
+
+
