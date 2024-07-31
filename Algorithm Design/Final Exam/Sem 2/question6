@@ -1,0 +1,8 @@
+a) How does an appropriate bounding function improve the efficiency of a depth-first search algorithm?
+An appropriate bounding function improves the efficiency of a depth-first search algorithm by allowing it 
+to discard unpromising branches in the search tree, reducing the number of states explored and enabling a more 
+focused search on promising paths, ultimately saving time and computational resources.
+
+b) What is the essential property of a bounding function that will guarantee that the correctness of the depth-first search
+ algorithm is maintained?
+ The essential property of a bounding function that guarantees the correctness of a depth-first search algorithm is admissibility. An admissible bounding function ensures that it never overestimates the true cost or quality of a solution. In other words, for all nodes in the search tree, the bounding function's value must be greater than or equal to the true cost of the optimal solution reachable from that node. This property ensures that the DFS algorithm will correctly find the optimal solution if one exists, as it makes informed decisions while exploring the search space without missing the best solution.
